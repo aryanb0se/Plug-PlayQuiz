@@ -1,0 +1,2044 @@
+[
+  {
+    "id": "q1",
+    "question": "Business analysts have provided a requirement to store contacts' usernames in the Click-Clack social media website in a single field on the Contact entity. Which solution follows best practices and fulfills the requirement?",
+    "options": [
+      "Extend the Contact entity with a field named ClickClack_Ext of type shorttext",
+      "Extend the Contact entity with a field named ClickClack of type shorttext",
+      "Extend the Contact entity with a field named ClickClack of type blob",
+      "Extend the Contact entity with a field named ClickClack_Ext of type addressline"
+    ],
+    "correct_answers": [
+      "Extend the Contact entity with a field named ClickClack_Ext of type shorttext"
+    ],
+    "choose_x_options": 1,
+    "explanation": "According to best practices for Guidewire data model extensions, when adding a new field to a base application entity (like Contact), the field name must end with the _Ext suffix. Additionally, the shorttext type (which maps to a varchar in the database) is the appropriate type for storing a username."
+  },
+  {
+    "id": "q2",
+    "question": "For ABPerson contacts only, the marketing team has requested to store the name of the individual's favorite sports team. What data model extension follows best practices to fulfill this requirement?",
+    "options": [
+      "Create an ABSportsTeam entity and add a foreign key from ABContact to ABSportsTeam",
+      "Create a typelist of sports team names, and add a typekey to ABContact based on that typelist",
+      "Add a varchar field to ABPerson named FavoriteTeam_Ext",
+      "Add a varchar field to ABContact named FavoriteTeam_Ext"
+    ],
+    "correct_answers": [
+      "Add a varchar field to ABPerson named FavoriteTeam_Ext"
+    ],
+    "choose_x_options": 1,
+    "explanation": "The requirement is specifically for ABPerson contacts only. The best practice is to add the field directly to the subtype entity (ABPerson) rather than the supertype (ABContact), as the field is not relevant to all contacts (e.g., Companies). New fields added to a base application entity must end with _Ext."
+  },
+  {
+    "id": "q3",
+    "question": "A developer is creating an entity for home inspections that contains a field for the inspection date. Which configuration of the file name and the field name fulfills the requirement and follows best practices?",
+    "options": [
+      "HomeInspection.etx, InspectionDate_Ext",
+      "HomeInspection_Ext.eti, InspectionDate",
+      "HomeInspection_Ext.etx, InspectionDate",
+      "HomeInspection_Ext.eti, InspectionDate_Ext",
+      "HomeInspection.eti, InspectionDate_Ext"
+    ],
+    "correct_answers": [
+      "HomeInspection_Ext.eti, InspectionDate"
+    ],
+    "choose_x_options": 1,
+    "explanation": "When creating a new custom entity from scratch, it should be defined in an .eti file and placed in the extensions/entity folder. The entity name must use the _Ext suffix. Field names on new custom entities do not require the _Ext suffix because the entity name itself already identifies it as an extension to the data model."
+  },
+  {
+    "id": "q4",
+    "question": "A customer requires a new entity, PolicyAttachment_Ext, to manage pictures of insured objects linked to a specific policy contract. According to best practices, which step is required to implement this requirement?",
+    "options": [
+      "Create an .etx file for PolicyAttachment_Ext.",
+      "Define the entity in a base application .eti file.",
+      "Define PolicyAttachment_Ext as an extension of the base Document entity.",
+      "Create an .eti file for PolicyAttachment_Ext."
+    ],
+    "correct_answers": [
+      "Create an .eti file for PolicyAttachment_Ext."
+    ],
+    "choose_x_options": 1,
+    "explanation": "Since PolicyAttachment_Ext is a new custom entity being created by the customer, the best practice is to create a new .eti file for it in the extensions/entity folder. An .etx file is used to extend an existing base entity with new fields, not to create a new top-level entity."
+  },
+  {
+    "id": "q5",
+    "question": "When viewing any list of policies, it's challenging to identify policies solely by number. The business always wants to include the policyholder's name along with the policy number in any list of policies. Which configurations follow best practices?",
+    "options": [
+      "Add a text cell to the row of the list view to display the policyholder's name.",
+      "Use a dynamic field on Policy to generate the display name.",
+      "Modify the Policy entity's \"Entity Name\" to display the policyholder's name.",
+      "Implement a getter method on a Policy enhancement to format the display string.",
+      "Configure a custom field on the Policy entity to store the combined display string.",
+      "Add a text input column to the list view to display the policyholder's name."
+    ],
+    "correct_answers": [
+      "Modify the Policy entity's \"Entity Name\" to display the policyholder's name."
+    ],
+    "choose_x_options": 1,
+    "explanation": "The requirement is to ensure that the policyholder's name is included with the policy number in any list of policies. The \"Entity Name\" is a fundamental property of an entity that controls how it is displayed in drop-down lists, search results, and other UI elements across the application. Changing the Entity Name is the most comprehensive and best-practice solution to ensure consistent display everywhere."
+  },
+  {
+    "id": "q6",
+    "question": "An insurer has a number of employees whose names are similar, but each one has a unique employee number for identification. Displaying the employee's name as a drop-down list in the user interface must include the employee's number with the employee's name to ensure uniqueness. For example: John Smith 3455, William Andy 3978, John Smith 4041. How can a developer satisfy this requirement following best practices?",
+    "options": [
+      "Enable Post On Change for name fields to modify how they display when the name is referenced",
+      "Define an entity name that concatenates the name fields and employee number",
+      "Create a setter property in a Name enhancement class",
+      "Create a Displaykey that concatenates the name fields and employee number"
+    ],
+    "correct_answers": [
+      "Define an entity name that concatenates the name fields and employee number"
+    ],
+    "choose_x_options": 1,
+    "explanation": "The requirement is to change how an entity is displayed in dropdown lists. The \"Entity Name\" is the specific Guidewire feature designed to define the display string for an entity instance. Concatenating the name and employee number within the Entity Name configuration is the standard best practice."
+  },
+  {
+    "id": "q7",
+    "question": "A government regulation requires adding a new Typecode to the base application's Country Typelist. Which actions follow Guidewire best practices for adding this new Typecode?",
+    "options": [
+      "Add the new Typecode to the Country.ttx file.",
+      "Modify the typelist's .java file to include the new Typecode.",
+      "Add the new Typecode to the base Country.tti file.",
+      "Add the new Typecode to an internal extension file.",
+      "Create a new standalone Typelist for the new Typecode.",
+      "Create a new Country.ttx file if there isn't one."
+    ],
+    "correct_answers": [
+      "Add the new Typecode to the Country.ttx file.",
+      "Create a new Country.ttx file if there isn't one."
+    ],
+    "choose_x_options": 2,
+    "explanation": "Base application typelists (.tti files) are read-only to prevent conflicts during upgrades. To add a new typecode, you must create or modify a typelist extension file (.ttx). A base typelist can have at most one .ttx file. If one does not exist, you must create it. New custom typecodes added to a base typelist must end with the _Ext suffix."
+  },
+  {
+    "id": "q8",
+    "question": "An insurer needs to add a new code to the base LOB (Line of Business) Typelist. Which configuration(s) follow best practices?",
+    "options": [
+      "Define the new code directly in the base LOB.tti.",
+      "Add the new type code to LOB.ttx.",
+      "Define the new code using a Gosu property on an LOB enhancement.",
+      "Create a new file named LOB.ttx if it doesn't already exist.",
+      "Add the new code to the base application's LOB_Ext.ttx file.",
+      "Create a new dynamic field on the LOB entity."
+    ],
+    "correct_answers": [
+      "Add the new type code to LOB.ttx.",
+      "Create a new file named LOB.ttx if it doesn't already exist."
+    ],
+    "choose_x_options": 2,
+    "explanation": "Similar to the previous question, the best practice for adding a new typecode to a base application typelist is to use a typelist extension file (.ttx). You should never modify the base .tti file directly. The .ttx file must be named exactly the same as the base typelist (e.g., LOB.ttx). If no such file exists in the extensions/typelist folder, you must create one."
+  },
+  {
+    "id": "q9",
+    "question": "An insurer wants to add a new typecode for an alternate address to a base typelist EmployeeAddress that has not been extended.Following best practices, which step must a developer take to perform this task?",
+    "options": [
+      "Create an EmployeeAddress_Ext.tti file and add a new typecode alternate",
+      "Open the EmployeeAddress.tti and add a new typecode alternate",
+      "Create an EmployeeAddress.ttx file and add a new typecode alternate_Ext",
+      "Create an EmployeeAddress.tix file and add a new typecode alternate_Ext"
+    ],
+    "correct_answers": [
+      "Create an EmployeeAddress.ttx file and add a new typecode alternate_Ext"
+    ],
+    "choose_x_options": 1,
+    "explanation": "Base application typelists (.tti files) are read-only and cannot be modified directly. To add a new typecode to a base typelist, you must use a typelist extension file (.ttx). If the typelist has not been extended before (no .ttx file exists), you must create a .ttx file with the exact same name as the base typelist (EmployeeAddress.ttx). New typecodes added to a base typelist must end with the _Ext suffix."
+  },
+  {
+    "id": "q10",
+    "question": "A business analyst provided a requirement to create a list of Payment Types accepted by vendors. The list will include the values Cash, Credit Card, Debit Card, Check, and EFT. It will be linked to Company Vendors.Following best practices for creating a new typelist, how can this requirement be configured in the data model?",
+    "options": [
+      "PaymentType.tti in the Metadata -> Typelist folder and add typecodes to the typelist for the five payment types",
+      "PaymentType_Ext.tti in the Extensions -> Typelist folder and add typecodes for the five payment types to the typelist",
+      "PaymentType.tix in the Metadata -> Typelist folder and add typecodes with the _Ext suffix to the typelist for the five payment types",
+      "PaymentType_Ext.ttx in the Extensions -> Typelist folder and add typecodes with the _Ext suffix to the typelist for the five payment types"
+    ],
+    "correct_answers": [
+      "PaymentType_Ext.tti in the Extensions -> Typelist folder and add typecodes for the five payment types to the typelist"
+    ],
+    "choose_x_options": 1,
+    "explanation": "This is a new custom typelist being created from scratch, not an extension to an existing base typelist. Custom typelists should be placed in the Extensions -> Typelist folder and their names must end with the _Ext suffix. Typecodes within a custom typelist do not need the _Ext suffix, as the typelist name itself already identifies it as a custom extension."
+  },
+  {
+    "id": "q11",
+    "question": "New fields specific to the new Review subtype of the Job entity are needed.Which configurations are best practices for adding these fields?",
+    "options": [
+      "Create the Review_Ext subtype.",
+      "Create new entities for Review-specific data.",
+      "Use existing fields on the Job entity and repurpose them.",
+      "Define the fields in the base Job entity.",
+      "Add the fields to the base Job entity and apply a constraint valid only for the Review_Ext subtype.",
+      "Add the fields to the Review_Ext subtype entity."
+    ],
+    "correct_answers": [
+      "Create the Review_Ext subtype.",
+      "Add the fields to the Review_Ext subtype entity."
+    ],
+    "choose_x_options": 2,
+    "explanation": "Since the fields are specific to the new Review subtype, the best practice is to create the new subtype entity (following the _Ext naming convention for custom entities) and add the subtype-specific fields directly to that entity. Information specific to a subtype should be stored at the subtype level, not in the supertype."
+  },
+  {
+    "id": "q12",
+    "question": "ABPersonVendor is an entity in the base application. An insurer needs to add a new person vendor type for auditors.Which configuration fulfills the requirement and follows the best practices?",
+    "options": [
+      "Create ABAuditor.etx as an extension of ABPersonVendor",
+      "Add a new entity ABAuditor_Ext.eti as a subtype of ABPersonVendor",
+      "Create ABAuditor_Ext.eti with a foreign key pointing to ABPersonVendor",
+      "Add a new column Auditor_Ext in the entity extension ABPersonVendor.etx"
+    ],
+    "correct_answers": [
+      "Add a new entity ABAuditor_Ext.eti as a subtype of ABPersonVendor"
+    ],
+    "choose_x_options": 1,
+    "explanation": "Adding a new \"type\" of person vendor (Auditor) means creating a new subtype entity. Base application entities like ABPersonVendor can be subtyped. Custom entities must use the _Ext suffix and be defined in an .eti file. Creating a subtype is the appropriate way to model a new specialized type of an existing entity."
+  },
+  {
+    "id": "q13",
+    "question": "The business wants to create a new popup in BillingCenter that displays a single customer invoicing inquiry. The popup will have the inquiry date, inquiry contact, and the description of the inquiry. Which configurations follow best practices to make this page editable? [Choose 2 options]",
+    "options": [
+      "Add an InputSet widget within the detail view and set its canEdit property to true.",
+      "Add a Boolean variable named editable_Ext to the Variables tab and set its initial value to true.",
+      "Set the Detail View panel's readOnly property to false.",
+      "Ensure that Input widgets are used for fields requiring data entry, and that their editable property is set to true.",
+      "Set the Page's startInEditMode property to true if it should initially be editable.",
+      "Be sure that the ListView container widget has its editable property set to true."
+    ],
+    "correct_answers": [
+      "Ensure that Input widgets are used for fields requiring data entry, and that their editable property is set to true.",
+      "Set the Page's startInEditMode property to true if it should initially be editable."
+    ],
+    "choose_x_options": 2,
+    "explanation": "To make a page (popup) editable, the startInEditMode property on the Page/Popup location should be set to true. Additionally, the individual atomic widgets (Input widgets) used for data entry must have their editable property set to true. The canEdit property on the location also controls whether the page supports edit mode."
+  },
+  {
+    "id": "q14",
+    "question": "An insurer specializing in high-risk policies requires a new Account to provide at least three references. A Reference entity is created.What is the best practice for adding and displaying References on the Contact Summary page in TrainingApp?",
+    "options": [
+      "Create an input set that displays References and add it to the Contact Summary page",
+      "Create a Reference detail view with fields for three References and add it to the Contact Summary page",
+      "Create a Contacts pop up and add a button that opens it to the Contact Summary page",
+      "Create a Reference list view and add it to the Contact Summary page"
+    ],
+    "correct_answers": [
+      "Create a Reference list view and add it to the Contact Summary page"
+    ],
+    "choose_x_options": 1,
+    "explanation": "Since the requirement is to display a collection of references (at least three), a List View Panel is the appropriate container widget. A List View is designed to display summary information about a collection of multiple objects (the Reference entities) simultaneously."
+  },
+  {
+    "id": "q15",
+    "question": "The company is concerned about data privacy and would like to have bank account information only visible to users in the Supervisor group.Following best practices, which steps below are required to fulfill this requirement?",
+    "options": [
+      "Create a permission viewbankaccounts and add that permission to the Supervisor group.",
+      "Set the visible property on the ListView to perm.group.supervisors.",
+      "Set the canView property on the ListView to perm.system.viewbankaccounts.",
+      "Add the ListView to the access permissions related to the Supervisor group.",
+      "Set the visible property on the ListView to perm.system.viewbankaccounts."
+    ],
+    "correct_answers": [
+      "Create a permission viewbankaccounts and add that permission to the Supervisor group.",
+      "Set the visible property on the ListView to perm.system.viewbankaccounts."
+    ],
+    "choose_x_options": 2,
+    "explanation": "To control visibility based on user permissions, you must first define the permission in the system. Then, you set the visible property on the PCF widget (the ListView) to the permission expression (e.g., perm.system.viewbankaccounts). This ensures the widget is only visible to users who have that specific permission."
+  },
+  {
+    "id": "q16",
+    "question": "A list displaying (read-only) invoice line items has been added to a screen. The business has requested the ability to add, remove, and edit items directly in the list.Following best practices, which of the following configurations are required?",
+    "options": [
+      "An InputSet must be used within each row.",
+      "The ListView 's Row Iterator must be exposed for association with the IteratorButtons.",
+      "A separate DetailView must be added for editing each item.",
+      "An IteratorButtons widget must be added.",
+      "The ListView itself must have a canEdit=\"true\" property.",
+      "The screen containing the ListView must have canEdit=\"true\"."
+    ],
+    "correct_answers": [
+      "The ListView 's Row Iterator must be exposed for association with the IteratorButtons.",
+      "An IteratorButtons widget must be added."
+    ],
+    "choose_x_options": 2,
+    "explanation": "To enable adding and removing items in a List View, you need an IteratorButtons widget (which provides the Add and Remove buttons). This widget must be associated with the List View's Row Iterator. To do this, the Row Iterator must be exposed on the List View's Exposes tab so that the toolbar (containing the IteratorButtons) can reference it."
+  },
+  {
+    "id": "q17",
+    "question": "In ClaimCenter, the Desktop-->Claims page contains a ListView that is backed by a View Entity ClaimDesktopView.eti. The company would like to add a column to the Claim Validation Level in this List View.Following best practice, which of the following steps are required to fulfill this requirement?",
+    "options": [
+      "Add a viewEntityTypekey in ClaimDesktopView.etx with: name: ValidationLevel path: Claim.ValidationLevel",
+      "Add a viewEntityTypekey in ClaimDesktopView.etx with: name: ValidationLevel_Ext path: Claim.ValidationLevel",
+      "Add a computedColumn in ClaimDesktopView.etx with: name: ValidationLevel path: Claim.ValidationLevel",
+      "Add a typekey in ClaimDesktopView.etx with: name: ValidationLevel_Ext path: Claim.ValidationLevel",
+      "Add a computedTypekey in ClaimDesktopView.etx with: name: ValidationLevel_Ext path: Claim.ValidationLevel"
+    ],
+    "correct_answers": [
+      "Add a viewEntityTypekey in ClaimDesktopView.etx with: name: ValidationLevel path: Claim.ValidationLevel"
+    ],
+    "choose_x_options": 1,
+    "explanation": "When backing a ListView with a View Entity, any columns you want to display must be directly accessible on the View Entity. If the field is not natively on the View Entity, you must extend the View Entity's .etx file using the appropriate element. For a typekey field (like ValidationLevel), you would use a viewEntityTypekey element and specify the path to the field on the related entity. Fields added to a base application entity (the View Entity) must end with _Ext, but the path remains the original field name."
+  },
+  {
+    "id": "q18",
+    "question": "Succeed Insurance has a page in PolicyCenter that displays a list of vehicles on a commercial auto policy. For policies with a large fleet of vehicles, they would like to have the ability to create multiple filters to show only a subset of the vehicles on the policy.Which methods follow best practices for implementing this filter?",
+    "options": [
+      "Add multiple Filter Options using Gosu Standard Query Query Filters.",
+      "Apply the filter using the Row Iterator configuration in the PCF.",
+      "Add a ListView Filter widget to the ListView.",
+      "Use Gosu's where method on the retrieved collection in memory.",
+      "Retrieve all policies and filter them in the application server layer.",
+      "Implement filtering logic in the list view PCF using visible properties."
+    ],
+    "correct_answers": [
+      "Add multiple Filter Options using Gosu Standard Query Query Filters.",
+      "Add a ListView Filter widget to the ListView."
+    ],
+    "choose_x_options": 2,
+    "explanation": "The best practices for implementing filters on a ListView are to use the built-in ListView Filter widget and to define the filter logic using Gosu Standard Query Filters. These filters execute at the database level, limiting the result set and improving performance, rather than retrieving all data and filtering it in memory."
+  },
+  {
+    "id": "q19",
+    "question": "An insurer requires a single column of information to be displayed in several places in the application. The insurer anticipates that fields may be added to or removed from this column in the future, and wants to do this without making changes in multiple places.Which container meets this requirement?",
+    "options": [
+      "Input set",
+      "Input column",
+      "Wizard",
+      "List view panel"
+    ],
+    "correct_answers": [
+      "Input set"
+    ],
+    "choose_x_options": 1,
+    "explanation": "An Input Set is a reusable container widget that groups related atomic input controls into logical, modular units. Its primary purpose is reusability. By defining the column's fields inside a reusable Input Set and referencing it in multiple locations, you can make changes (add or remove fields) in a single place (the Input Set file), and those changes will automatically propagate to all screens that reference it. This perfectly fulfills the requirement."
+  },
+  {
+    "id": "q20",
+    "question": "A developer is building a list view and needs to allow users to navigate to the popup, NewPopup_Ext, by clicking on a specific field value in each row. According to best practices, what is the correct configuration to implement this navigation?",
+    "options": [
+      "targetLocation must call the method NewPopup_Ext.push()",
+      "action must call the method NewPopup_Ext.push()",
+      "action must call the method NewPopup_Ext.go()",
+      "targetLocation must call the method NewPopup_Ext.go()",
+      "linkURL must call the method NewPopup_Ext.push()",
+      "linkURL must call the method NewPopup_Ext.go()"
+    ],
+    "correct_answers": [
+      "action must call the method NewPopup_Ext.push()"
+    ],
+    "choose_x_options": 1,
+    "explanation": "To make a widget (like a cell in a list view) navigable, you configure its action property. For a popup location, you use the .push() method because push() opens the location in the current frame while retaining the current location so that the user can return to it."
+  },
+  {
+    "id": "q21",
+    "question": "A menu displays links to different administrative settings like 'User Management', 'Group Management', and 'Permission Settings'. Using best practices, how could a developer organize these settings under an 'Administration' heading?",
+    "options": [
+      "Configure a Location Group containing the administrative links.",
+      "Implement the grouping of links within the Tab Bar definition.",
+      "Create a reusable PCF file to contain the administration links.",
+      "Use separate Link widgets for each administrative link.",
+      "Use a Detail View Panel to organize the administrative links.",
+      "Configure each administrative link as a distinct PCF Page."
+    ],
+    "correct_answers": [
+      "Configure a Location Group containing the administrative links."
+    ],
+    "choose_x_options": 1,
+    "explanation": "A Location Group is the specific PCF element designed to organize a set of menu links and pages. It is the standard and best-practice way to create a logical grouping, such as an 'Administration' heading, within the navigation sidebar."
+  },
+  {
+    "id": "q22",
+    "question": "A user is viewing a list of records in a non-editable list view. The requirement is to allow the user to edit details for a single record selected from the list. Which UI pattern is the best practice to provide edit access for an individual record without making the entire list editable?",
+    "options": [
+      "Use an Input Set within the list view row to enable inline editing.",
+      "Open a Popup containing a detail view of the selected record in edit mode.",
+      "Make the list view editable but restrict editing with system permissions.",
+      "Add an \"Edit\" button within each row that toggles edit mode for that row.",
+      "Configure a Location Group",
+      "specifically for editing single records.",
+      "Navigate to a separate Detail View Page for editing the record."
+    ],
+    "correct_answers": [
+      "Open a Popup containing a detail view of the selected record in edit mode."
+    ],
+    "choose_x_options": 1,
+    "explanation": "The best practice for editing a single record from a list view is to use a popup. Popups are designed to mimic the functionality of a separate window for focused tasks like viewing and editing an object, without making the entire list editable. This avoids synchronization issues and provides a clean user experience."
+  },
+  {
+    "id": "q23",
+    "question": "When a user selects \"True\" or \"False\" from a radio button set, the related input set on the UI needs to become visible or hidden without updating the page. Which UI features follow best practices to enable this behavior?",
+    "options": [
+      "Dynamic UI logic controlled by the visible property of the input set.",
+      "Post-on-Change configured on the radio button set.",
+      "Visible/hidden logic in a Pre-update rule.",
+      "UI Field Validation configured on the radio button set.",
+      "Post-on-Change configured on the input set.",
+      "Input Conversion configured on the radio button set."
+    ],
+    "correct_answers": [
+      "Post-on-Change configured on the radio button set."
+    ],
+    "choose_x_options": 1,
+    "explanation": "This is a classic case of dynamic UI behavior. The visible property on the Input Set controls whether it is shown or hidden. To make this change happen immediately when the user selects a radio button, you must enable Post On Change on the radio button widget. This triggers a server round-trip to re-evaluate the screen, and the server then instructs the browser to update the visibility of the Input Set without a full page refresh."
+  },
+  {
+    "id": "q24",
+    "question": "A field on a page needs real-time validation as the user enters data (e.g., a date of birth or loss date cannot be in the future, or a number is outside the valid range). According to best practices, which UI validation methods should be used to provide immediate feedback to the user?",
+    "options": [
+      "Implementing a Gosu Validation rule on the entity.",
+      "Display a general error message after the page is saved.",
+      "Configuring the inputConversion property on the input widget.",
+      "Configure a ternary expression in the validationExpression property of the widget.",
+      "Configure validation in a Gosu Preupdate rule.",
+      "Enable PostOnChange for the field being validated."
+    ],
+    "correct_answers": [
+      "Enable PostOnChange for the field being validated."
+    ],
+    "choose_x_options": 1,
+    "explanation": "To provide immediate, real-time feedback as the user enters data, you must combine two UI features: Post On Change: Enabled on the input widget to post the value to the server immediately when it changes. validationExpression: This property of the widget defines a Gosu expression (often a ternary expression) that is evaluated. If the validation fails, it returns an error message, preventing the commit and displaying the error."
+  },
+  {
+    "id": "q25",
+    "question": "An insurer has extended the ABContact entity in ContactManager with an array of Notes to capture information of interest about the contact over time. A developer has been asked to write a function to process all the notes for a given contact. Which code satisfies the requirement and follows best practices?",
+    "options": [
+      "while ( exists ( note in anABContact.Notes ) ) { //do something }",
+      "for ( note in anABContact.Notes ) { //do something }",
+      "for ( i = 1..|anABContact.Notes.length ) { //do something }",
+      "var aNote = anABContact.Notes.firstWhere(\\ note -> note.Author != null) //do something"
+    ],
+    "correct_answers": [
+      "for ( note in anABContact.Notes ) { //do something }"
+    ],
+    "choose_x_options": 1,
+    "explanation": "The requirement is to process all the notes. The for loop is the standard and most readable Gosu syntax for iterating over all elements in a collection or array. It is the best practice for this scenario. The while loop (Option 1) is not idiomatic for iterating over all elements of a collection. The indexed for loop (Option 3) is less readable and more error-prone, and firstWhere (Option 4) only processes a single note, not all of them. Q29. As a developer you are creating a new Gosu class for Succeed Insurance. According to the course material, which of the following statements define how you should implement logging in your new class? Providing context when logging errors is essential. However, developers should avoid excessive logging, as it can be costly to implement and maintain, and it may negatively impact performance. When logging an exception, provide details about the cause of the exception. Because you are providing a detailed description there is no need to log the exception message or stack trace. Checking the log level before logging is usually unnecessary, as logging typically has minimal impact on performance. Logging in the cloud can be provided in either a string format or JSON. When logging at the debug level you should check to see if debugging in enabled first to minimize possible performance issues. All exceptions are errors, thus they should always be logged at the error level. When logging Personal Identifiable Information (PII), developers should log the information at least at the INFO level. Number of correct options: 2 ✅ Correct: 1st option and 5th option Explanation: Log messages need enough context to be useful, but excessive logging is costly to maintain and hurts performance — so context and restraint must be balanced. Separately, \"guarded logging\" means checking whether debug is enabled before executing costly string construction for a debug-level log statement, to avoid unnecessary performance overhead. Q30. Succeed Insurance needs to diagnose a problem related to data integrity and needs to output the job number to the log. Which of the following Gosu logging statements follows best practices? _logger.debug(String.format(\"Submission::%s\", {submission.id})) if (_logger.DebugEnabled) { _logger.info(String.format(\"Submission::%s\", {submission.id})) } if (_logger.DebugEnabled) { _logger.trace(\"Submission::${submission.id}\") } _logger.debug(\"Submission::${submission.id}\") if (_logger.DebugEnabled) { _logger.debug(\"Submission::${submission.id}\") } Number of correct options: 1 ✅ Correct: 5th option Explanation: Since the message uses string interpolation/concatenation (a computed string), the debug-level guard if (_logger.DebugEnabled) must wrap the call, and the log level must match — debug inside a DebugEnabled check. Options 2 and 3 mismatch the guard with info/trace calls, and options 1 and 4 skip the required guard entirely. Q31. Which of the following statements regarding the Guidewire Cloud Logging Standard is true? It is recommended for all projects, but it is not mandatory The Guidewire Common Logging Format (CLF) uses XML It is mandatory for all Guidewire Cloud and self-managed projects It is mandatory for all Guidewire Cloud projects It is mandatory for new Guidewire Cloud projects, but not for upgrades to Guidewire Cloud Logger output is in the Guidewire Common Logging Format (CLF) Number of correct options: 2 ✅ Correct: 4th option and 6th option Explanation: The Cloud logging standard is mandatory for all new Cloud projects and all upgrades to Guidewire Cloud, and only recommended (not mandatory) for self-managed projects. Log output follows CLF, which is a JSON-based format — not XML. Q32. Which rule is written in the correct form for a rule which sets the claim segment and leaves the ruleset? CONDITION (claim : entity.Claim) return claim.Segment == null ACTION (claim : entity.Claim, actions : gw.rules.ACTION) claim.Segment = TC_AUTO_LOW actions.exit() CONDITION(claim : entity.Claim) return true ACTION (claim : entity.Claim, actions : gw.rules.ACTION) if (claim.Segment == null) {claim.Segment = TC_AUTO_LOW} actions.exit() CONDITION (claim : entity.Claim) return claim.Segment = TC_AUTO_LOW ACTION (claim : entity.Claim, actions : gw.rules.ACTION) actions.exit() CONDITION (claim : entity.Claim) return claim.Segment == null ACTION (claim : entity.Claim, actions : gw.rules.ACTION) claim.Segment == TC_AUTO_LOW actions.exitRuleset() Number of correct options: 1 ✅ Correct: 1st option Explanation: The CONDITION should use a comparison (==) to check whether the segment is unset, and the ACTION should use an assignment (=) to set the value, followed by actions.exit() to leave the entire rule set. Option 2 unnecessarily wraps the logic in an if-block inside the ACTION instead of using the CONDITION for filtering. Option 3 incorrectly uses assignment (=) inside a return statement in CONDITION. Option 4 incorrectly uses a comparison (==) instead of assignment in the ACTION and calls a non-existent method actions.exitRuleset() instead of the correct actions.exit(). Q33. According to best practices, which of the following requirements should be implemented using a Pre-Update Rule? When a claim is saved without a loss description, alert the user to correct the missing data before saving. Update the history every time a contact's last name is changed. Create an activity to contact the insured when a claim is created. Create an activity to contact the police department when a police report is added to a claim. Update the age in the user interface when the birth date is entered or changed. When I save a contact with an address, call the integration to complete address verification. Number of correct options: 2 ✅ Correct: 2nd option and 6th option Explanation: Pre-Update rules fire on save, detect whether a specific field has changed, and perform domain processing (including calling out to integrations) before the object commits — exactly matching \"update history on a field change\" and \"call an integration when saving with a changed/added field.\" Option 1 (blocking a save with a user-facing error) is Validation rule behavior. Options 3 and 4 (creating activities upon record creation) fit Event-fired rules. Option 5 is a UI-layer calculation, not a database pre-update concern. Q34. A developer needs to create an interface in a customer package to handle banking services. An implementation has been identified for online credit union services. Which interface and implementation classes adhere to the naming conventions? BankService.gs, CreditUnionBankService.gs BankService_Ext.gs, CreditUnionBankServiceImpl.gs IBankService.gs, CreditUnionBankService.gs BankService_Ext.gs, CreditUnionBankService.gs Number of correct options: 1 ✅ Correct: 1st option Explanation: Interfaces in customer packages should not carry the _Ext suffix and should not be prefixed with I, so BankService is correct. The implementation class should have a descriptive name reflecting the specific implementation type and should not append Impl — so CreditUnionBankService is correct. Q35. A business analyst has a requirement to use either the EmailAddress1 or EmailAddress2 field on ABContact as the email address, which will be used in multiple places. { var emailAddress = this.EmailAddress1 if(StringUtils.isEmpty(emailAddress) ) emailAddress = this.EmailAddress2 return emailAddress } Which enhancement component signature is appropriate for this implementation and follows best practice? function emailAddress_Ext() : String property get EmailAddress_Ext() : String property set EmailAddress_Ext(emailAddress: String) function determineEmailAddress_Ext() Number of correct options: 1 ✅ Correct: 2nd option Explanation: The code computes and returns a value with no parameters and no side effects, which should be exposed as a virtual property using property get in PascalCase with an explicit return type — not a function (options 1 and 4), and not property set (option 3, which is for assignment, not reading a value). Q36. Succeed Insurance needs to add a new getter property to the Java class generated from the Contact entity. According to best practices what steps below would allow this to get implemented? Add the enhancement definition to a new Contact.etx file. Add a new get property to the enhancement. Create a new Gosu enhancement for the Contact entity in the si.cc.entity.enhancements package. Create a new Gosu enhancement for the Contact entity in the gw.entity.enhancements package. Add the enhancement definition to the Contact.eti file. Add a new get function to the enhancement. Number of correct options: 2 ✅ Correct: 2nd option and 3rd option Explanation: New enhancements should be created in a customer-specific package (like si.cc.entity.enhancements), not in Guidewire's own gw.entity.enhancements namespace, and getter logic belongs in the enhancement itself using a get property (not a plain function, and not defined inside .eti/.etx XML files, which only hold entity structure/delegate declarations). Q37. According to documentation, which items are key best practices for creating and naming packages in customer implementations? Using testing stages (e.g. alpha, beta) in the package hierarchy. Grouping classes by type (e.g. all classes in one package, all enhancements in another). Using the application code as the top-level package followed by customer short name. Using descriptive names for packages and classes based on functionality. Using the customer short name followed by the application code. Number of correct options: 1 ✅ Correct: 5th option Explanation: The correct convention places the customer's short name first, followed by the application code (e.g., si.bc, si.cc, si.pc, si.suite) — the reverse of option 3. Naming after temporary release stages (option 1) is explicitly discouraged, as is grouping code purely by class type rather than by feature (option 2). Q38. Which statements correctly describe the implementation and execution of Gosu Validation rules? They can be used to prevent an entity from being saved if validation fails. They are defined in XML configuration files. They are configured directly in the UI. They are executed after the database commit occurs. They are organized within the Validation Rule Category. They are defined in entity .eti or .etx files. Number of correct options: 2 ✅ Correct: 1st option and 5th option Explanation: Validation rules are Gosu rules that run when a Validatable entity is being committed; a \"reject with error\" outcome prevents the save. They're grouped into rule set categories, specifically the Validation Rule Category. They are not XML- or UI-configured, don't run after the commit completes, and the .eti/.etx files only declare that an entity implements the Validatable delegate — they don't contain the actual rule logic. Q39. A list view needs to display Policy entities where the Status is 'Active'. Which query techniques are best practices for filtering in the database? Use a where() method on the resultset object of the Policy to filter by Status. Retrieve all policies into memory and filter the result collection in memory using a loop. Filter the data in the UI layer. Use a compare() method on the query object of the Policy to filter by 'Status'. Use filter() on the resultset object to define the 'Status' condition. Retrieve all policies into memory and filter according to 'Status' by using the firstWhere() method on the results. Number of correct options: 1 ✅ Correct: 4th option Explanation: Filtering should happen at the database/SQL level rather than after loading data into memory. The correct approach is calling .compare() on the Query object before executing .select(), which restricts rows at the SQL WHERE clause level. All other options load the full data set first and filter afterward (in memory or the UI), which is an explicitly documented anti-pattern that causes performance and memory issues. Q40. Question: Succeed Insurance would like a list of all Notes related to all of the Policies for a specific Account.Which approach follows best practices for retrieving this data more efficiently? Options: var policyNotes = policy.Notes.where( \\n -> n.Policy.Account == account) var policyNotes = Query.make(Note) .compare(Note#Policy, Relop.Equals, policy).compare(Note#Account, Relop.Equals, account).select() var policyNotes : ArrayList<Note> for(policy in account.Policies) { for (note in policy.Notes) { policyNotes.add(note) } } var policyNotes = account.Policies.arrays(\"Notes\") var policyNotes = account.Policies*.Notes*.DisplayName var policyNotes = account.Policies*.Notes.toList() Choose 1 option. Number of correct options: 1 ✅ Correct Answer: 2nd option Why: Filtering must be pushed to the database via Query.make(...).compare(...), not performed by traversing object-graph relationships in memory (options 1, 3, 6), not via a nonstandard .arrays() call (option 4), and not by pulling DisplayName strings instead of Note objects (option 5). Options 1, 3, and 6 all load every Policy and Note into memory first and filter/iterate afterward — the documented anti-pattern. Q41. Question: A developer wrote the following query to create a list of activities sorted by activity pattern, and then returns the first activity for a failed policy bind: uses gw.api.database.Query var activitiesList = Query.make(Activity).select().toList().sortBy( \\ act -> act.ActivityPattern ) var firstBindFailed = activitiesList.firstWhere( \\act -> act.ActivityPattern.Code == \"bind_failed\" ) This query uses the sortBy() and firstWhere() methods which are anti-patterns.Where should the developer handle the filtering and sorting to follow best practices? Options: On the application server In a block statement In the database In the application cache Choose 1 option. Number of correct options: 1 ✅ Correct Answer: 3rd option — In the database Why: sortBy() and firstWhere() operate on an already-fetched in-memory list (.select().toList()), meaning all rows are pulled into the app server first. Best practice is to push both filtering and sorting to the database using the Query/compare() API before the results are materialized in memory. Q42. Question: Given the following code sample: var newBundle = gw.transaction.Transaction.newBundle() var targetCo = gw.api.database.Query.make(ABCompany) targetCo.compare(ABCompany#Name, Equals, \"Acme Brick Co.\") var company = targetCo.select().AtMostOneRow company.Notes = \"TBD\" Following best practices, what two items should be changed to create a bundle and commit this data change to the database? (Select two) Options: Add company to the bundle Add ( \\newBundle ->{ to the first line Add Notes to the bundle End with newBundle.commit() Add targetCo to the bundle Choose 2 options. Number of correct options: 2 ✅ Correct: 1st option and 4th option Why: The query result (company) is read-only until it's explicitly copied into the writable bundle (company = newBundle.add(company)) before its fields can be modified. Since this uses Transaction.newBundle() (not the closure-based runWithNewBundle()), there's no automatic commit — the developer must explicitly call newBundle.commit() at the end. Wrapping in a closure (option 2) would only apply to runWithNewBundle(), and the query object itself (targetCo) is not the entity being modified, so it isn't what needs adding to the bundle. Q43. Question: A query is known to return 500,000 rows.Which two are recommended to process all 500,000 rows efficiently? (Select two) Options: Sort the result by entity name Use a batch process for large result sets Use setPageSize() Use Google Iterables Chunk the results into page sets Choose 2 options. Number of correct options: 2 ✅ Correct: 3rd option and 5th option Why: This is the documented example almost verbatim — a query returning 500,000 rows should not be loaded into a single bundle/collection. The best-practice pattern is paging with regular commits: setting a page size via queryResults.setPageSize(10000) and processing the results in chunked pages with periodic commits, avoiding memory exhaustion and oversized transactions. Source: 02__GOSU.docx: \"Scale Problem Example: If a query returns 500,000 entities... A better approach: Paging plus regular commits... queryResults.setPageSize(10000).\" Q44. Question: Which GUnit base class is used for tests that involve Gosu queries PolicyCenter? Options: GUnitTestClassBase PCServerTestClassBase SuiteDBTestClassBase PCUnitTestClassBase Choose 1 option. Number of correct options: 1 ✅ Correct Answer: 2nd option — PCServerTestClassBase Why: Tests involving Gosu queries interact with the database, which requires a running application server — this needs the XXServerTestCaseBase family, with XX replaced by the product prefix. For PolicyCenter, that's PCServerTestClassBase (not the XXUnitTestClassBase variant, which is only for tests with no server/database dependency, like pure calculations). Source: 02__GOSU.docx: \"XXServerTestCaseBase for tests that require services provided by a running server — Examples: Tests that interact with the database... Replace XX with the appropriate product application prefix (CC, PC, BC, or AB).\" Q45. Question: Which GUnit test method adheres to the Guidewire naming standards? Options: testBulkInvoiceBatchJob claimSegmentationTest testThatQuoteIsGenerated whenAssigningActivityTest Choose 1 option. Number of correct options: 1 ✅ Correct Answer: 3rd option — testThatQuoteIsGenerated Why: Guidewire's documented test method naming standard requires the method name to start with the prefix testThat, followed by a description of the expected behavior being tested (e.g., testThatUserContactInformationIsComplete). The other options either use \"test\" as a suffix, omit \"testThat\" altogether, or use a \"when...Test\" pattern that doesn't match the standard. Source: 02__GOSU.docx: \"Function names must start with the prefix testThat and follow... testThat + CodeProducesThisBehavior.\" Q46. Question: A developer has added multiple related features in an implementation that needs to be tested. For efficiency, all those features need to be tested at the same time.Which two statements are true about including multiple tests? (Select two) Options: They must be in the same GUnit class They must use the assertTrue() function They must have the same @Suite annotation They must be based on the same GUnit base class They must set TestResultsDir property Choose 2 options. Number of correct options: 2 ✅ Correct: 3rd option and 4th option Why: To combine multiple test classes into a single test suite for efficient batch execution, all test classes must share the same base class type and must carry the identical @Suites annotation string so they're recognized as members of the same suite. They don't need to live in a single class (they can span multiple classes), don't require assertTrue() specifically (other assertion methods exist), and TestResultsDir is an output-location property, not a grouping requirement. Source: 02__GOSU.docx: \"All test classes in a suite must be based on the same class type... All test classes in a suite must have the same @Suites annotation.\" Q47. Question: Which types of information does the Guidewire Profiler provide to help analyze application performance? Options: Detailed logs of every user interaction. Timings of UI navigations. Identification of potential memory leaks. Solutions to UI performance issues. Real-time monitoring of server resource utilization. Information about database queries and their execution plans. Choose 2 options. Number of correct options: 2 ✅ Correct: 2nd option and 6th option Why: The Profiler times specific blocks of server-side code and tracks where time is spent, including navigation round trips and response times of calls to the database and external services — matching \"timings of UI navigations\" and \"information about database queries.\" It does not log every user interaction, doesn't detect memory leaks or monitor resource utilization in real time, and it surfaces diagnostic data rather than prescribing solutions. Q48. Question: Which performance issues of Guidewire core products can be analyzed using the Guidewire Profiler? Options: Client reflection Data warehouse User interface Database index Batch process Choose 2 options. Number of correct options: 2 ✅ Correct: 3rd option and 5th option Why: The three profiler types map directly to specific performance domains: the Web profiler targets core-product UI performance issues, and the Entry-point profiler targets background components including batch processes, work queues, message destinations, web services, and startable plugins. \"Data warehouse,\" \"database index,\" and \"client reflection\" aren't areas the Guidewire Profiler is documented to analyze. Q49. Question: A developer performed Guidewire Profiler analysis on a web service. The results showed a large Own Time (unaccounted-for time) value, but it is difficult to correlate the data with the exact section of code executed.Which approach can help to identify what is causing the large processing time? Options: Add more logging statements at the INFO level Create more profiler tags to block out sections of code Apply extra frames in the profiler output Use print statements to calculate the time spent in the code Choose 1 option. Number of correct options: 1 ✅ Correct Answer: 2nd option Why: \"Own time\" represents execution time not attributed to any specific instrumented operation. When a large, unexplained own-time value appears (e.g., because a custom web service wasn't explicitly instrumented), the documented remedy is to add additional profiler tags around specific sections of the code to break that time down into more granular, attributable operations — not to rely on logging or print statements, which don't integrate with profiler timing data. Q50. Question: Which scenarios should database consistency checks be run in? Options: A customer created a new typelist and added several new typecodes to an existing typelist. A customer created their own SQL script to populate empty columns in their production database. A customer created a subtype of an entity that has a required column and imported data through the user interface. A customer extended an entity with a column that is not required and imported data for the column through the user interface. A customer created a new LocationRef, a folder that contains a new PCF file, Detail View, and List View. Choose 2 options. Number of correct options: 2 ✅ Correct: 2nd option and 3rd option Why: DBCCs should run \"before and after running any scripts that change data\" — a custom SQL script bypasses Guidewire's application-layer referential integrity and bundle validation entirely, making it a prime consistency-risk scenario. DBCCs should also run \"always... before importing data into a production database\" — and importing data for a required column on a new subtype is the higher-risk import scenario (versus an optional/non-required field), since it can leave inconsistent or missing mandatory data across affected rows. A pure typelist/typecode addition or a new UI artifact (LocationRef/PCF/views) doesn't itself alter or import row-level entity data, so neither triggers a DBCC need."
+  },
+  {
+    "id": "q26",
+    "question": "Which scenarios should database consistency checks be run in?",
+    "options": [
+      "A customer created a new typelist and added several new typecodes to an existing typelist.",
+      "A customer created their own SQL script to populate empty columns in their production database.",
+      "A customer created a subtype of an entity that has a required column and imported data through the user interface.",
+      "A customer extended an entity with a column that is not required and imported data for the column through the user interface.",
+      "A customer created a new LocationRef, a folder that contains a new PCF file, Detail View, and List View."
+    ],
+    "correct_answers": [
+      "A customer created their own SQL script to populate empty columns in their production database.",
+      "A customer created a subtype of an entity that has a required column and imported data through the user interface."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd Option is correct: Running unapproved SQL scripts or data fixes that alter data directly in the database is a primary root cause of consistency issues. DBCCs should always be executed before and after running any scripts that change data. 3rd Option is correct: Importing data into subtyped entities with required columns introduces data integrity risks if platform/subtype checks aren't validated, making DBCCs mandatory during/after data imports. 1st, 4th, and 5th Options are incorrect: Standard typelist additions, optional column extensions via standard UI imports, or adding UI PCF components (LocationRef, Detail View, List View) do not bypass validation layers or execute direct database modifications requiring DBCC checks."
+  },
+  {
+    "id": "q27",
+    "question": "Database Consistency Checks classified as 'Other data integrity expectations' in Guidewire Cloud must be addressed before deploying code into production in the Cloud. Which two are best practices for resolving these errors? (Select two)",
+    "options": [
+      "Schedule weekly deployments of fixes until all errors are resolved",
+      "Run the Production Data Fix Tool to correct these errors",
+      "Fix these errors regardless of age or number of offending rows",
+      "Share analysis with Guidewire Cloud Assurance for final determination",
+      "Prioritize errors that are recent and occur in large numbers"
+    ],
+    "correct_answers": [
+      "Share analysis with Guidewire Cloud Assurance for final determination",
+      "Prioritize errors that are recent and occur in large numbers"
+    ],
+    "choose_x_options": 2,
+    "explanation": "4th Option is correct: When analyzing DBCC error findings, sharing error analysis with Guidewire Cloud Assurance / Guidewire Support is necessary to confirm root causes and receive approved remediation strategies/scripts. 5th Option is correct: Best practice analysis involves prioritizing errors based on impact, especially focusing on errors that are recent and occur in large numbers. 1st, 2nd, and 3rd Options are incorrect: Scheduling random weekly deployments without proper pre-approval, relying on non-existent automated tools without root-cause analysis, or fixing errors without evaluating context/age are inefficient and against Guidewire's governed remediation process."
+  },
+  {
+    "id": "q28",
+    "question": "An insurer ran the DBCC checks against a copy of their PolicyCenter production database in a non-production environment to check for errors before promoting the code to production. Three errors with high counts were found in the category Data update and reconciliation. What are two best practices for resolving the errors? (Select two)",
+    "options": [
+      "Analyze the errors to determine the root cause and correct the code responsible for the errors",
+      "Search the Knowledge Base on the Guidewire Community for solutions to the problems found",
+      "Wait to see if error counts increase; if they increase by more than 10%, fix the errors",
+      "Promote the code to production and run the DBCCs again to see if the same errors are found",
+      "Identify any bad data and write a SQL script to correct the data; run the script immediately"
+    ],
+    "correct_answers": [
+      "Analyze the errors to determine the root cause and correct the code responsible for the errors",
+      "Search the Knowledge Base on the Guidewire Community for solutions to the problems found"
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st Option is correct: DBCCs identify inconsistencies after they occur, so developers must perform root-cause analysis to identify and fix the underlying code or rule logic responsible for the data corruption. 2nd Option is correct: Guidewire recommends checking the Knowledge Base on the Guidewire Community for preapproved data-fix scripts and documented solutions. 3rd, 4th, and 5th Options are incorrect: Waiting for errors to multiply, promoting unverified code to production, or running unapproved SQL scripts directly without Guidewire Support review violates safety policies and risks severe database corruption."
+  },
+  {
+    "id": "q29",
+    "question": "53. A developer reviewing inspection results observes that many pieces of code violate a specific convention regarding method formatting. Which steps can the developer take to manage these inspection results effectively in Guidewire Studio? (Select two)",
+    "options": [
+      "Use the gwb utility command in the console to manually suppress the inspection warning for the individual file without changing the configuration settings.",
+      "Apply a global change to the inspection profile settings, such as changing the severity level for the identified rule, and share these updated settings with the team.",
+      "Inject custom profiler tags into the code to account for 'Own Time' associated with the execution time of the method flagged by the inspection.",
+      "Review the results of the inspection directly in the Gosu Editor interface, where violations are highlighted using Info, Warning, or Error severity markers.",
+      "Utilize the 'Show Queries' feature on the Guidewire Profiler analysis page to see which database operations triggered the inspection warning.",
+      "Modify the entity definition in the Data Dictionary to exclude the entity from future inspections regarding its field usage."
+    ],
+    "correct_answers": [
+      "Apply a global change to the inspection profile settings, such as changing the severity level for the identified rule, and share these updated settings with the team.",
+      "Review the results of the inspection directly in the Gosu Editor interface, where violations are highlighted using Info, Warning, or Error severity markers."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd Option is correct: In Guidewire Studio, developers manage inspections by navigating to File -> Settings -> Editor -> Inspections. They can modify severity levels (Info, Warning, Error) or disable specific rules, save these settings into an inspection profile, and share the XML profile across the development team. 4th Option is correct: Inspections run automatically as background tasks in Guidewire Studio, displaying inspection results directly inside the Gosu Editor interface using Info, Warning, or Error severity markers (highlighting/underlining). 1st, 3rd, 5th, and 6th Options are incorrect: gwb inspect is used to run command-line inspection builds rather than suppressing per-file warnings; custom profiler tags measure execution time/Own Time; Guidewire Profiler's 'Show Queries' feature measures database performance rather than static code formatting conventions; and the Data Dictionary documents entity schemas rather than controlling Studio code inspections."
+  },
+  {
+    "id": "q30",
+    "question": "Which two types of InsuranceSuite projects does the Cloud Assurance process apply to? (Select two)",
+    "options": [
+      "New features added to existing implementations",
+      "Upgrades to Guidewire Cloud Platform",
+      "Upgrades on self-managed implementations",
+      "New Guidewire Cloud Platform implementations",
+      "New self-managed implementations"
+    ],
+    "correct_answers": [
+      "Upgrades to Guidewire Cloud Platform",
+      "New Guidewire Cloud Platform implementations"
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd & 4th Options are correct: The documentation explicitly states: \"Cloud Assurance applies equally to new Cloud implementations and upgrades to Guidewire Cloud.\" 1st, 3rd, and 5th Options are incorrect: Self-managed (on-premise) projects utilize Cloud Delivery Standards merely as optional best practices, whereas the formal Cloud Assurance process and governance apply specifically to Cloud implementations and Cloud upgrades."
+  },
+  {
+    "id": "q31",
+    "question": "An InsuranceSuite implementation project is preparing for deployment to the Guidewire Cloud Platform. Which two Cloud Delivery Standards must be met before deployment? (Select two)",
+    "options": [
+      "GUnit tests must be combined into suites and executed in Studio prior to each code deployment",
+      "New entities and new columns added to existing entities use a customer suffix such as _Si",
+      "There are no instances of single statements with multiple expansion operators(*)",
+      "The default system user su is configured as the second argument of the runWithNewBundle method",
+      "Log files contain no PII (Personally Identifiable Information) as clear text"
+    ],
+    "correct_answers": [
+      "There are no instances of single statements with multiple expansion operators(*)",
+      "Log files contain no PII (Personally Identifiable Information) as clear text"
+    ],
+    "choose_x_options": 2,
+    "explanation": "3rd Option is correct: Standard CPD-008 / XT-036 explicitly checks for multiple array expansion operators (*.) in a single statement, requiring ArrayLoader to prevent performance degradation. 5th Option is correct: Security standards (IS-SEC-1008 / CPD-009) mandate that log files must never contain clear-text Personally Identifiable Information (PII) or secrets. 1st, 2nd, and 4th Options are incorrect: Guidewire standard suffix for extensions is mandatory _Ext (not _Si); hardcoding superuser su in runWithNewBundle is explicitly prohibited as a critical security finding; and GUnit command-line execution uses gwb runSuite, not manual Studio execution."
+  },
+  {
+    "id": "q32",
+    "question": "What type of Assessment Check ensures that applications have monitoring and logging frameworks in place?",
+    "options": [
+      "Operations",
+      "Upgrades",
+      "Performance",
+      "Security"
+    ],
+    "correct_answers": [
+      "Operations"
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: The documentation explicitly defines the Operations assessment category: \"Operations: Ensures applications have monitoring and logging frameworks in place and that knowledge transfer documentation is complete.\" 2nd, 3rd, and 4th Options are incorrect: Security focuses on vulnerabilities/PII/PCI; Performance focuses on query bottlenecks and resource limits; and Upgrades focuses on product alignment and code quality."
+  },
+  {
+    "id": "q33",
+    "question": "What is a commit in Git?",
+    "options": [
+      "A snapshot of all of the files in a project",
+      "A fixed pointer that identifies the changes to a file",
+      "A list of files with the changes made to each file over time",
+      "A floating pointer to a stream of file changes"
+    ],
+    "correct_answers": [
+      "A snapshot of all of the files in a project"
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: The documentation explicitly states: \"A commit in Git is a snapshot of all the files in a project. There are no versions of files, just versions of the entire project.\" 2nd, 3rd, and 4th Options are incorrect: Storing lists of file changes over time represents traditional delta-based VCS (like Subversion), fixed pointers to commits are tags, and floating pointers are branches."
+  },
+  {
+    "id": "q34",
+    "question": "A developer has finished a bug fix. Which step is needed before merging to follow best practices?",
+    "options": [
+      "Clone the parent branch",
+      "Recreate the development branch",
+      "Integrate parent branch to defect branch",
+      "Merge user story branch into parent branch"
+    ],
+    "correct_answers": [
+      "Integrate parent branch to defect branch"
+    ],
+    "choose_x_options": 1,
+    "explanation": "3rd Option is correct: Step 1 of Guidewire's four basic integration steps states: \"Integrate Parent to Feature Branch: Pull/merge the latest parent branch (develop/release) changes into the user story or defect branch\" before running tests and merging back to the parent. 1st, 2nd, and 4th Options are incorrect: Cloning clones repositories (not branches); recreating develop is invalid; and merging to the parent is the step after parent-to-defect integration and testing."
+  },
+  {
+    "id": "q35",
+    "question": "Which statement is true about the Project Release branch for an implementation using Git?",
+    "options": [
+      "It is used by the implementation team to stabilize the code for a specific release",
+      "It stores the current production code and is updated whenever the production system is updated",
+      "It contains product releases from Guidewire",
+      "It is used by the implementation team to develop code for a specific release"
+    ],
+    "correct_answers": [
+      "It is used by the implementation team to stabilize the code for a specific release"
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: The documentation defines: \"Project Release branch (release/r-*): Used by implementation teams to stabilize code for specific upcoming releases prior to production.\" 2nd, 3rd, and 4th Options are incorrect: master stores production code; gw-releases receives product releases from Guidewire; and develop (mainline) is used to develop code for future releases."
+  },
+  {
+    "id": "q36",
+    "question": "What is a benefit of archiving?",
+    "options": [
+      "Improves application performance by reducing the size of the database",
+      "Reorganizes and compresses the contents of the database to conserve space",
+      "Reduces database size by permanently removing data marked for purge",
+      "Reindexes the contents of the database to increase data retrieval speed"
+    ],
+    "correct_answers": [
+      "Improves application performance by reducing the size of the database"
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: The documentation states under the primary benefits: \"Archiving is the most effective strategy to manage database growth and maintain optimal application performance over time.\" 2nd, 3rd, and 4th Options are incorrect: Archiving moves entire closed entity object graphs out of the primary database into an external archive store (preserving data for retrieval, rather than purging or merely compressing/reindexing primary tables)."
+  },
+  {
+    "id": "q37",
+    "question": "A non-editable list view shows items related to a claim. To modify a single item, the user clicks an icon in that item's row. Which UI pattern is the best practice to present the editable details?",
+    "options": [
+      "Use an Input Set within the list view row.",
+      "Open a Popup containing an editable form for the single item.",
+      "Navigate to a new PCF page for editing.",
+      "Configure a Location Group for editing.",
+      "Make the list view editable and use permissions."
+    ],
+    "correct_answers": [
+      "Open a Popup containing an editable form for the single item."
+    ],
+    "choose_x_options": 1,
+    "explanation": "2nd Option is correct: Under \"Popup use case 1: View and edit existing objects\" and \"Add Button Patterns\", when a List View displays summary information, the best practice to view/edit complete details of a single record is to click a row cell/icon that launches a modal Popup containing an editable Detail View form. 1st, 3rd, 4th, and 5th Options are incorrect: Input Sets cannot be placed directly inside List View rows; opening full PCF pages or Location Groups causes unnecessary full-screen navigation loss; and making the entire List View editable directly is unsuitable when the row displays only summary fields."
+  },
+  {
+    "id": "q38",
+    "question": "The business has requested an Interactions Popup with all of the interaction details. It is currently read-only. What configuration does the developer need to do to make it editable? (Select two)",
+    "options": [
+      "Define variables using the Variables tab instead of Required variables.",
+      "Replace the detail view with a Panel Ref.",
+      "Set the detail view panel's readOnly property to false.",
+      "Set the canEdit property to true on the Popup.",
+      "Ensure all widgets within the detail view are Cell widgets.",
+      "Add EditButtons widget to the Popup."
+    ],
+    "correct_answers": [
+      "Set the canEdit property to true on the Popup.",
+      "Add EditButtons widget to the Popup."
+    ],
+    "choose_x_options": 2,
+    "explanation": "4th Option is correct: To make a location editable, the location itself must explicitly specify canEdit=\"true\" (or canEdit=\"true\" and startInEditMode=\"true\"). 6th Option is correct: An EditButtons (or Toolbar with EditButtons) widget must be added to the Screen/Toolbar inside the popup to provide mode-switching controls (Edit, Update, Cancel). 1st, 2nd, 3rd, and 5th Options are incorrect: Required variables are mandatory for passing entity parameters; PanelRef includes panel files; DetailViews use editable=\"true\" (not readOnly=\"false\"); and Cell widgets belong exclusively in List Views, whereas DetailViews contain Input widgets."
+  },
+  {
+    "id": "q39",
+    "question": "Based on what value the user selects in a 'Coverage Type' dropdown, some inputs on the Detail View need to be shown or hidden immediately without clicking Update. Which UI features are best practices for implementing this dynamic behavior? (Select two)",
+    "options": [
+      "Enabling Post-on-Change on the 'Coverage Type' dropdown.",
+      "Add the dependent fields into an inputSet whose visible property reflects the \"Coverage Type\" value.",
+      "Creating a new Pre-update rule with the required show/hide logic.",
+      "Configuring the visible property on the dependent fields.",
+      "Configuring the inputConversion property on the 'Coverage Type' dropdown.",
+      "Implementing a Gosu Validation rule to show or hide the required fields based on the \"Coverage Type\"."
+    ],
+    "correct_answers": [
+      "Enabling Post-on-Change on the 'Coverage Type' dropdown.",
+      "Add the dependent fields into an inputSet whose visible property reflects the \"Coverage Type\" value."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st Option is correct: Enabling Post-on-Change on the triggering widget ('Coverage Type') posts changes immediately to the server while editing, causing the browser to redraw dependent fields without requiring a database commit or clicking Update. 2nd Option is correct: Guidewire performance best practice explicitly mandates: \"Use a dynamic widget such as InputGroup / InputSet to test a condition once for the entire set of widgets\" rather than repeatedly evaluating visibility expressions across individual fields. 3rd, 4th, 5th, and 6th Options are incorrect: Rules (Pre-update / Validation) run on entity save, not during interactive client editing; setting individual field visibility causes layout re-render performance issues; and inputConversion converts string inputs, rather than driving dynamic visibility."
+  },
+  {
+    "id": "q40",
+    "question": "Succeed Insurance has vendor information that needs to be edited in multiple Locations throughout the InsuranceSuite application. According to best practices, which of the following PCF widgets should be configured to meet this requirement? (Select 3 options)",
+    "options": [
+      "DetailView",
+      "Worksheet",
+      "InputSet",
+      "PCF Page",
+      "LocationGroup",
+      "ListView"
+    ],
+    "correct_answers": [
+      "DetailView",
+      "InputSet",
+      "ListView"
+    ],
+    "choose_x_options": 3,
+    "explanation": "1st, 3rd, and 6th Options are correct: Primary container widgets (DetailView, ListView, and InputSet) are reusable view containers designed specifically to encapsulate field groups and layout structures that can be referenced across multiple locations throughout the application. 2nd, 4th, and 5th Options are incorrect: Worksheets, Pages, and LocationGroups are location-level navigation elements that house screens and containers, rather than reusable input container widgets."
+  },
+  {
+    "id": "q41",
+    "question": "The left-hand navigation menu has several links related to system configuration. Which configuration best practice should be used to group these under an expandable Configuration heading?",
+    "options": [
+      "Configure each link as a MenuItem widget.",
+      "Place all configuration links within a single PCF page entitled Configuration.",
+      "Implement grouping using an InputSet with a Configuration heading label.",
+      "Create a Location Group named Configuration to include the system configuration links.",
+      "Define the links directly in the application's Tab Bar file.",
+      "Use separate Label widgets for each link accompanied by a Configuration heading label."
+    ],
+    "correct_answers": [
+      "Create a Location Group named Configuration to include the system configuration links."
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: In Guidewire PCF architecture, a Location Group is the structural container used to collect and group a set of related pages/locations sharing common navigation components (such as sidebar menu links) under a unified heading/context. Other Options are incorrect: MenuItem controls top-bar/action menus; putting everything in a single PCF page creates a monolithic non-modular screen; InputSet groups atomic fields within DetailViews, not location menu links; the TabBar handles top-level horizontal navigation rather than sidebar link groupings; and Label widgets are atomic UI text elements, not location navigation links."
+  },
+  {
+    "id": "q42",
+    "question": "According to best practices, which InsuranceSuite configuration option should be used to add a new method to a Guidewire base entity?",
+    "options": [
+      "Add the new method to a new Java class extending the Guidewire base entity.",
+      "Add the new method to a Gosu enhancement file for the Guidewire base entity.",
+      "Add the new method to a Gosu class extending the Guidewire base entity.",
+      "Add the new method to the Java class generated from the Guidewire base entity."
+    ],
+    "correct_answers": [
+      "Add the new method to a Gosu enhancement file for the Guidewire base entity."
+    ],
+    "choose_x_options": 1,
+    "explanation": "2nd Option is correct: Entities defined in XML (.eti/.etx) are generated read-only classes that cannot be directly edited. The Guidewire-recommended best practice for adding new methods or properties to a base entity is to create a Gosu enhancement file (.gsx) in a custom package space. Other Options are incorrect: Base entities use single-table metadata inheritance and cannot be directly subclassed via custom Java/Gosu classes to extend base entities; auto-generated Java classes in configuration/generated are read-only and overwritten during code generation."
+  },
+  {
+    "id": "q43",
+    "question": "Given the following Gosu method definition: function calculateDiscount( amount : Decimal ) : amount { if ( amount > 1000 ) { return amount * 0.10 } else { return amount * 0.05 } } Identify the two errors in this Gosu method definition.",
+    "options": [
+      "The return type should be Decimal.",
+      "The variable name amount is not descriptive.",
+      "The variable amount is not initialized.",
+      "The comparison amount > 1000 is missing parentheses.",
+      "The method name calculateDiscount does not follow camel case.",
+      "The return type amount is incorrect."
+    ],
+    "correct_answers": [
+      "The return type should be Decimal.",
+      "The return type amount is incorrect."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st & 6th Options are correct: In Gosu method declarations (function name(param : Type) : ReturnType), the return type must be a valid data type literal (such as Decimal or void). The provided code incorrectly specifies the parameter variable name amount as the return type (: amount), which is invalid syntax. The return type must be corrected to : Decimal. Other Options are incorrect: amount is a parameter name; if ( amount > 1000 ) is valid Gosu syntax; and calculateDiscount follows lowerCamelCase properly."
+  },
+  {
+    "id": "q44",
+    "question": "Which statements about Gosu package structure and naming conventions follow Guidewire best practices for customer implementations?",
+    "options": [
+      "Use generic package names like com.company.",
+      "Use the customer code as the top-level package segment.",
+      "Group classes solely by functional area (e.g., util, entity, batch).",
+      "Place all custom classes in a single custom package.",
+      "Use underscores in package names (e.g., my_package).",
+      "Include the product code (e.g., pc, cc, bc) in the package structure."
+    ],
+    "correct_answers": [
+      "Use the customer code as the top-level package segment.",
+      "Include the product code (e.g., pc, cc, bc) in the package structure."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd Option is correct: Guidewire best practices require assigning a customer abbreviation/acronym as the top-level package prefix (e.g., si for Succeed Insurance). 6th Option is correct: Top-level application sub-packages must include the product application code (si.bc, si.cc, si.pc, or si.suite for cross-application suite code). Other Options are incorrect: Generic/project-code names (like alpha or com.company) are discouraged; sub-packages should be structured primarily by feature rather than pure technical function; and underscores in package names violate camelCase/lowercase package naming standards."
+  },
+  {
+    "id": "q45",
+    "question": "According to best practices, which of the following requirements should be implemented using a Pre-Update Rule?",
+    "options": [
+      "Initiate an asynchronous background process to calculate complex reserves after a financial transaction is committed to the database.",
+      "Determine which Adjuster Group and specific Adjuster should handle a new claim when that claim is created, based on claim type and region.",
+      "Create a new Flag Entry whenever a Claim is saved if the claim is for a Commercial Lines policy and does not already have an open Flag Entry.",
+      "Generate a system note reflecting the old and new value immediately prior to committing a change to the Claim's Assigned User field.",
+      "Prevent the Claim from being saved if the Loss Date is entered but the Loss Description is left empty by displaying an error message to the user.",
+      "Automatically calculate and display the new payment amount on the Check screen immediately after the user modifies the deduction field."
+    ],
+    "correct_answers": [
+      "Create a new Flag Entry whenever a Claim is saved if the claim is for a Commercial Lines policy and does not already have an open Flag Entry.",
+      "Generate a system note reflecting the old and new value immediately prior to committing a change to the Claim's Assigned User field."
+    ],
+    "choose_x_options": 2,
+    "explanation": "3rd & 4th Options are correct: Pre-Update rules execute domain logic and entity creation/modifications (such as adding a FlagEntry or creating a Note recording field changes) prior to committing the entity changes to the database. Other Options are incorrect: Asynchronous/post-commit tasks belong in Event Messaging; claim assignment uses Assignment rules; blocking invalid data with error messages belongs in Validation rules; and real-time screen calculations use Post On Change in the UI."
+  },
+  {
+    "id": "q46",
+    "question": "According to best practices, which two requirements should be implemented using a Pre-Update Rule?",
+    "options": [
+      "When a Contact entity is updated and the value of the 'WebAddress' field changes, ensure that it gets saved with the http:// prefix.",
+      "Automatically display the calculated NextCourtesyContactDate field value immediately in the UI when the LastCourtesyContact date field is modified.",
+      "Create a new internal history record (e.g., Contact Created event) whenever a new ABContact entity is successfully saved to the database.",
+      "Trigger an external web service call to automatically perform credit score verification after a New Account entity is successfully created and committed to the database.",
+      "Automatically determine the correct Underwriter Group responsible for processing a new submission based on policy location and line of business.",
+      "Prevent a claim adjustment from being created if the amount entered exceeds the defined legal limits for the jurisdiction, displaying a field validation error."
+    ],
+    "correct_answers": [
+      "When a Contact entity is updated and the value of the 'WebAddress' field changes, ensure that it gets saved with the http:// prefix.",
+      "Create a new internal history record (e.g., Contact Created event) whenever a new ABContact entity is successfully saved to the database."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st Option is correct: Formatting/pre-processing entity field values before committing them to the database is a standard Pre-Update rule use case. 3rd Option is correct: Pre-Update rules execute domain logic prior to commit, such as appending an ABContact history event record during entity save. Other Options are incorrect: UI field dynamic updates use Post On Change / Enhancements; post-commit external web service calls use Event Messaging; assignment logic belongs in Assignment rules; and blocking saves with validation errors belongs in Validation rules."
+  },
+  {
+    "id": "q47",
+    "question": "A build chains for InsuranceSuite applications in GWCP are triggered automatically for commits on specific branches. According to the training, which types of branches typically initiate an automatic build chain?",
+    "options": [
+      "Release branches (release/*)",
+      "Develop branch (develop)",
+      "Bugfix branches (bugfix/*)",
+      "Feature branches (feature/*)",
+      "User branches (users/*)",
+      "Hotfix branches (hotfix/*)"
+    ],
+    "correct_answers": [
+      "Release branches (release/*)",
+      "Develop branch (develop)",
+      "Feature branches (feature/*)"
+    ],
+    "choose_x_options": 3,
+    "explanation": "1st, 2nd & 4th Options are correct: The documentation explicitly states that TeamCity initiates build chains automatically when detecting commits on monitored branches: <default>, feature/*, develop, or release/*. 3rd, 5th, and 6th Options are incorrect: User branches (user/*) or non-standard branch naming patterns do not automatically trigger the full automated build chain; builds for user branches must be launched manually or triggered via explicit pull requests."
+  },
+  {
+    "id": "q48",
+    "question": "According to the training, to deploy an InsuranceSuite application to a development planet using Guidewire Home, what is the correct general navigation path or method?",
+    "options": [
+      "Select the Build Management app from Guidewire Home and choose a planet.",
+      "Navigate to Guidewire Home -> Build Promotion -> Select Application.",
+      "Navigate to Guidewire Home -> TeamCity -> Select Build Configuration.",
+      "Select the Planets app from Guidewire Home and then navigate to the specific planet and application.",
+      "Navigate to Guidewire Home -> Storage Access -> Select Planet."
+    ],
+    "correct_answers": [
+      "Select the Planets app from Guidewire Home and then navigate to the specific planet and application."
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: The documentation specifies: \"Deployments are managed through the Planets app in Guidewire Home... Select the Planets app from Guidewire Home -> Select a target planet -> Under Applications and add-ons, select InsuranceSuite\". Other Options are incorrect: Build Management (TeamCity) is used to inspect build logs/compile containers, not to deploy to planets; Build Promotion is used to promote builds between star systems (Pre-Prod/Prod), not to deploy directly on a development planet."
+  },
+  {
+    "id": "q49",
+    "question": "The training materials describe different types of deployment strategies for InsuranceSuite applications. What are key characteristics of an All-IS deployment?",
+    "options": [
+      "It allows code changes without disrupting other apps.",
+      "It deploys all InsuranceSuite applications at once.",
+      "It is primarily used for patching individual microservices.",
+      "It requires a blue/green compatible build verification.",
+      "It only deploys selected InsuranceSuite applications",
+      "If any of them fails, that won't prevent the deployment of the others. (Note: In standard GWCP deployment choices, All-IS deploys all applications simultaneously and supports dropping the database)."
+    ],
+    "correct_answers": [
+      "It deploys all InsuranceSuite applications at once.",
+      "If any of them fails, that won't prevent the deployment of the others. (Note: In standard GWCP deployment choices, All-IS deploys all applications simultaneously and supports dropping the database)."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd Option is correct: All-IS Deployment updates all InsuranceSuite applications (PolicyCenter, BillingCenter, ClaimCenter, ContactManager) on the target planet simultaneously. 6th Option is correct: All-IS deployment can be run across planets exhibiting states of Empty, Deployed, Stopped, or Failed. 1st, 3rd, 4th, and 5th Options are incorrect: Updating individual apps without disrupting others describes Selective Deployment; and requiring blue/green verification describes Blue/Green Deployment."
+  },
+  {
+    "id": "q50",
+    "question": "A developer has completed a configuration change in an InsuranceSuite application on their local environment. According to the development lifecycle described in the training, which initial steps are required to move this change towards testing and deployment?",
+    "options": [
+      "Create a new physical star system in Guidewire Home.",
+      "Schedule automated builds in TeamCity",
+      "Trigger a TeamCity build via Guidewire Home if it has not already begun automatically.",
+      "Configure pre-merge quality gates in Bitbucket.",
+      "Push the code changes to the remote source code repository in Bitbucket.",
+      "Deploy the application directly to a pre-production planet."
+    ],
+    "correct_answers": [
+      "Configure pre-merge quality gates in Bitbucket.",
+      "Push the code changes to the remote source code repository in Bitbucket."
+    ],
+    "choose_x_options": 2,
+    "explanation": "5th Option is correct: After completing local edits, the developer commits changes and pushes the branch to the remote source code repository in Bitbucket. 4th Option is correct: Pushing code and opening a Pull Request triggers the automated evaluation of pre-merge quality gates and TeamCity build chains. Other Options are incorrect: Physical star systems are provisioned by infrastructure admins; and local changes cannot be deployed directly to pre-production without passing lower dev environments, PR merge, and build promotion."
+  },
+  {
+    "id": "q51",
+    "question": "Within the Guidewire Cloud Platform (GWCP) architecture, which statements accurately describe the hierarchical relationship and purpose of Galaxies, Quadrants, Star Systems, and Planets?",
+    "options": [
+      "A planet is logically isolated from all other planets in its star system.",
+      "A star system corresponds to a Cloud customer tenant or business unit.",
+      "A planet is logically isolated from all other star systems.",
+      "A quadrant is the deployment environment where applications run.",
+      "A galaxy corresponds to an AWS region where cloud customers are deployed.",
+      "A galaxy operates within an isolation zone."
+    ],
+    "correct_answers": [
+      "A galaxy corresponds to an AWS region where cloud customers are deployed.",
+      "A galaxy operates within an isolation zone."
+    ],
+    "choose_x_options": 2,
+    "explanation": "5th Option is correct: The documentation defines: \"Galaxy: A specific cloud region within an Isolation Zone (e.g., an AWS region like us-east-1) where GWCP infrastructure executes.\" 6th Option is correct: \"Isolation Zone: A high-level geographic/regulatory fence... Galaxy: A specific cloud region within an Isolation Zone...\" Other Options are incorrect: Planets within a Star System share database/platform services; Tenants correspond to customer organizations; and Planets (not quadrants) are deployment environments where applications run."
+  },
+  {
+    "id": "q52",
+    "question": "The Guidewire Cloud Platform (GWCP) uses an astronomy metaphor to describe its logical partitions. Which statements accurately describe how different levels within this metaphor provide isolation?",
+    "options": [
+      "A Star is a logical star system that represents a business unit or shared service.",
+      "Each Star is kept completely separate from the other Stars within a Tenant.",
+      "Planets provide isolation between different Orbits.",
+      "Galaxies isolate individual planets from each other.",
+      "Tenants provide isolation between different AWS regions.",
+      "A Star isolates data between different Tenants."
+    ],
+    "correct_answers": [
+      "A Star is a logical star system that represents a business unit or shared service.",
+      "Each Star is kept completely separate from the other Stars within a Tenant."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st Option is correct: \"Star: A logical business unit or system (e.g., Personal Lines) scoping shared configuration, code repositories, and build pipelines.\" 2nd Option is correct: \"A single tenant can host multiple stars to isolate different lines of business... Star 1 and Star 2 operate completely independently with separate databases.\" Other Options are incorrect: Orbits organize planets by deployment stage (not vice versa); Isolation Zones/Galaxies are geographic regions; and Tenants isolate entire organizations."
+  },
+  {
+    "id": "q53",
+    "question": "During a conversation about the structure of a Cloud customer's isolated resources within an AWS region, which GWCP provisioning terms would be accurately used to describe the Isolation Zone and the customer's Tenant?",
+    "options": [
+      "A Isolation Zone is a Planet, and the customer's unit is a Star.",
+      "A Star exists in a defined Orbit",
+      "An Isolation Zone is within a Star",
+      "There is no sharing of data between Tenants.",
+      "Tenants can only exist in one Isolation Zone",
+      "A Tenant exists in an Orbit"
+    ],
+    "correct_answers": [
+      "There is no sharing of data between Tenants.",
+      "Tenants can only exist in one Isolation Zone"
+    ],
+    "choose_x_options": 2,
+    "explanation": "4th Option is correct: \"Tenant: An organization's overarching isolation boundary... Tenants do not share data, configuration, or workloads with other carriers.\" 5th Option is correct: An Isolation Zone is a high-level geographic/regulatory fence containing galaxies and tenants."
+  },
+  {
+    "id": "q54",
+    "question": "A developer is troubleshooting an issue with an InsuranceSuite application on GWCP. According to the sources, how can they use Datadog to view application logs to aid in this process?",
+    "options": [
+      "By running a specific query in the Lifecycle Manager.",
+      "By checking the Storage Access audit logs.",
+      "By accessing the Datadog Metrics Explorer and filtering for application errors.",
+      "By accessing the Datadog logs interface and using the search tools.",
+      "Datadog provides a central place for managing logs that can be used for troubleshooting.",
+      "By reviewing the TeamCity build logs for the latest successful build."
+    ],
+    "correct_answers": [
+      "By accessing the Datadog logs interface and using the search tools.",
+      "Datadog provides a central place for managing logs that can be used for troubleshooting."
+    ],
+    "choose_x_options": 2,
+    "explanation": "4th Option is correct: Developers access log evidence by opening the Log Explorer in Datadog and constructing full-text queries or filtering via facets. 5th Option is correct: Datadog serves as the centralized observability platform in GWCP for log aggregation, search, and troubleshooting. Other Options are incorrect: Lifecycle Manager manages configuration releases; Metrics Explorer tracks numerical performance metrics rather than text logs; and TeamCity build logs capture compilation/test output rather than application runtime logs."
+  },
+  {
+    "id": "q55",
+    "question": "An insurer would like to include the Law Firm Specialty as part of the Law Firm's name whenever the name is displayed in a single widget. Which configurations follow best practices to meet this requirement?",
+    "options": [
+      "Place a Text Cell widget in the ListView's Row container for the law firm's specialty.",
+      "Configure the entity name for the Law Firm entity to include law firm's specialty.",
+      "Add a custom field to the entity to store a concatenated display string.",
+      "Place a Text Input widget in the ListView's Row container for the law firm's specialty.",
+      "Use a dynamic field to generate the display string to include the law firm's specialty.",
+      "Modify the Law Firm entity's displayname property to include the law firm's specialty.",
+      "Implement a getter method on the entity to return a formatted name that includes the law firm's specialty."
+    ],
+    "correct_answers": [
+      "Configure the entity name for the Law Firm entity to include law firm's specialty."
+    ],
+    "choose_x_options": 1,
+    "explanation": "2nd Option is correct: In Guidewire, configuring an Entity Name (under Config -> Entity Names) defines the programming logic for how an entity instance's name is displayed throughout the UI (such as in dropdowns and wherever its DisplayName property is evaluated in a single widget). Other Options are incorrect: Placing a separate Text Cell or Text Input creates an additional column/widget rather than displaying the name in a single widget; adding a redundant database field violates normalization best practices; and DisplayName is an auto-generated, read-only property determined by the Entity Name configuration rather than edited directly in code."
+  },
+  {
+    "id": "q56",
+    "question": "An insurer needs to add fields unique to the Incident subtype CyberIncident_Ext. Which approach(es) follow best practices for adding these fields? (Choose 2 options)",
+    "options": [
+      "Add the fields to the CyberIncident_Ext subtype entity.",
+      "Create a new entity CyberIncident_Ext linked via foreign key to Incident.",
+      "Create CyberIncident_Ext as a subtype of the Incident entity.",
+      "Define the fields directly in the base Claim entity.",
+      "Use existing fields on the Claim entity.",
+      "Add the fields to the base Claim entity and apply a constraint valid only for the CyberIncident_Ext subtype."
+    ],
+    "correct_answers": [
+      "Add the fields to the CyberIncident_Ext subtype entity.",
+      "Create CyberIncident_Ext as a subtype of the Incident entity."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st & 3rd Options are correct: According to Guidewire subtyping architecture, to introduce subtype-specific behavior and data, you first create the subtype entity inheriting from its supertype (supertype=\"Incident\"), and then define additional fields unique to that subtype directly within that subtype entity definition. Other Options are incorrect: ClaimCenter already provides an Incident entity hierarchy designed for subtyping (e.g., InjuryIncident, PropertyIncident); adding incident-level attributes directly to the parent Claim entity violates domain model boundaries."
+  },
+  {
+    "id": "q57",
+    "question": "The sources describe different types of deployment strategies for InsuranceSuite applications. What are key characteristics of a selective deployment?",
+    "options": [
+      "It requires deploying all InsuranceSuite and EnterpriseEngage applications simultaneously.",
+      "It allows deployment of only the selected InsuranceSuite applications.",
+      "It is primarily used for deploying builds to production star systems.",
+      "It is the only strategy that supports rolling updates.",
+      "It always involves a database restore from production."
+    ],
+    "correct_answers": [
+      "It allows deployment of only the selected InsuranceSuite applications."
+    ],
+    "choose_x_options": 1,
+    "explanation": "2nd Option is correct: The documentation defines Selective Deployment: \"Updates one or more selected InsuranceSuite applications without redeploying unchanged applications.\" Other Options are incorrect: Deploying all applications simultaneously describes an All-IS deployment; selective deployments are commonly used in development/testing planets; rolling updates are the underlying platform standard across multiple deployment types; and dropping or restoring the database is explicitly unsupported during selective deployments (it always reuses the existing database)."
+  },
+  {
+    "id": "q58",
+    "question": "The results of a Guidewire Profiler analysis on a web page showed a large unaccounted-for time. The developer cannot identify which block of code is taking up so much time by examining the profiler output. Which approach can help to account for the large time spent and improve reading of the profiler output?",
+    "options": [
+      "Identify the PCF file name in the profiler output",
+      "Print out the timestamp before and after the code blocks",
+      "Create a function to calculate processing time in the class",
+      "Surround the blocks of code with profiler tags"
+    ],
+    "correct_answers": [
+      "Surround the blocks of code with profiler tags"
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: The documentation states: \"Own Time represents unaccounted-for time in the process... Using Profiler Tags allows you to block out sections of code and give them meaningful names for subsequent analysis.\" By surrounding candidate blocks with Profiler.push() and Profiler.pop(), unexplained Own Time is transformed into named, measurable frames. Other Options are incorrect: PCF file names do not isolate Gosu execution lines; manual print() statements are an anti-pattern that does not integrate with profiler analysis; and manual timers lack frame integration into Guidewire Profiler."
+  },
+  {
+    "id": "q59",
+    "question": "Which two are capabilities of the Guidewire Profiler? (Select two)",
+    "options": [
+      "Provide timing information of application calls to external services",
+      "Track where time is spent in Guidewire application code",
+      "Measure network latency between the database server and application server",
+      "Track time spent in the web browser",
+      "Measure network latency between the browser and application server"
+    ],
+    "correct_answers": [
+      "Provide timing information of application calls to external services",
+      "Track where time is spent in Guidewire application code"
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st & 2nd Options are correct: Under \"Web profiler does...\", the documentation explicitly lists that it: (1) tracks where time is spent on the server side in Guidewire application code (Java and Gosu), and (2) tracks response time of application calls to the database and external services. Other Options are incorrect: Under \"Web profiler does not...\", the documentation explicitly clarifies that it does not include browser time and does not measure network latency between the browser and the application server."
+  },
+  {
+    "id": "q60",
+    "question": "ACME Insurance requires that addresses are validated through a postal service in all insurance products. Which package structure and Gosu class name follow best practice?",
+    "options": [
+      "acme.pc.service.postalservice, AddressUtil_Ext.gs",
+      "gw.suite.services.postalservice, AddressUtil_Ext.gs",
+      "gw.webservice.postalservice, AddressUtil.gs",
+      "ai.suite.integration.postalservice, AddressUtil.gs"
+    ],
+    "correct_answers": [
+      "ai.suite.integration.postalservice, AddressUtil.gs"
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: Guidewire package naming best practices require: Top-level customer acronym/abbreviation (ai for ACME Insurance). The application scope segment (suite for cross-product code that applies across all InsuranceSuite applications). Feature-based sub-package (integration.postalservice). Class name in UpperCamelCase as a singular noun without an _Ext suffix when declared inside a customer package (AddressUtil.gs). Other Options are incorrect: 1st option restricts the package to PolicyCenter (pc) instead of all suite products and adds an unnecessary _Ext suffix; 2nd and 3rd options place customer code in Guidewire's base namespace (gw.*), which violates package best practices."
+  },
+  {
+    "id": "q61",
+    "question": "An analyst is examining the process for promoting a verified build from the development environment to production. Which statements accurately describe key steps in the flow of code changes between physical star systems in GWCP, according to the training? (Select two)",
+    "options": [
+      "Production database backups are not required when promoting builds.",
+      "Builds are promoted sequentially from dev to pre-production and then to production physical star systems.",
+      "Code is directly committed from dev to production repositories.",
+      "A build must be deployed to every planet in the dev star system before promotion is allowed.",
+      "The Build Promotion app in Guidewire Home is used to manage the promotion process."
+    ],
+    "correct_answers": [
+      "Builds are promoted sequentially from dev to pre-production and then to production physical star systems.",
+      "The Build Promotion app in Guidewire Home is used to manage the promotion process."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd Option is correct: GWCP mandates a sequential two-stage promotion progression: validated builds are promoted from the development star system to pre-production, and only then promoted from pre-production to production. 5th Option is correct: Moving validated builds across star systems is managed through the Build Promotion application in Guidewire Home (or programmatically via the Build Promoter API). Other Options are incorrect: Taking a production database backup is a mandatory preparation step before production deployment; code is never committed directly to production (only immutable containerized builds are promoted); and promotion does not require deploying to every single planet in dev."
+  },
+  {
+    "id": "q62",
+    "question": "When viewing application logs in Datadog for troubleshooting, which methods can be used to find specific information within the logs, according to the training? (Select two)",
+    "options": [
+      "By querying the Lifecycle Manager API.",
+      "Using the sidebar facets to filter results.",
+      "Using the search bar for full-text searches.",
+      "Creating custom dashboards with relevant widgets.",
+      "By examining the build history in TeamCity.",
+      "Using the Monitors section to set up alerts."
+    ],
+    "correct_answers": [
+      "Using the sidebar facets to filter results.",
+      "Using the search bar for full-text searches."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd & 3rd Options are correct: The documentation section \"Accessing logs\" explicitly defines the core search tools in the Datadog Log Explorer: Sidebar Facets: Filter logs using structured metadata fields (such as env, service, status). Search Bar: Execute full-text string queries across log contents. Other Options are incorrect: Lifecycle Manager manages configuration releases; dashboards and monitors provide high-level metric graphs and alerting rather than searching log entries; and TeamCity build logs capture compilation/test output rather than runtime application logs."
+  },
+  {
+    "id": "q63",
+    "question": "The Marketing department wants to add information for attorneys and doctors: For doctors, store the name of their medical school. For attorneys, store the name of their law school. Which two data model extensions follow best practices to fulfill this requirement? (Select two)",
+    "options": [
+      "An array on ABPerson, named ProfessionalSchools_Ext",
+      "An entity named MedSchool_Ext and a foreign key to it from AB_Doctor",
+      "An entity named ProfessionalSchool_Ext, storing the school's name and type",
+      "A varchar column on ABAttorney, named LawSchool_Ext",
+      "A varchar column on ABDoctor, named MedSchool_Ext",
+      "An entity named LawSchool_Ext, and a foreign key to it from AB_Attorney"
+    ],
+    "correct_answers": [
+      "A varchar column on ABAttorney, named LawSchool_Ext",
+      "A varchar column on ABDoctor, named MedSchool_Ext"
+    ],
+    "choose_x_options": 2,
+    "explanation": "4th & 5th Options are correct: In Guidewire data model inheritance, attributes specific to a subtype are defined at that subtype's level (in its .etx extension file) rather than on the general supertype (ABPerson). Because each professional has a single school name, adding a varchar column on ABDoctor (MedSchool_Ext) and on ABAttorney (LawSchool_Ext) is the simplest and most performant design. Other Options are incorrect: Storing fields on ABPerson would pollute other person subtypes (like ABAdjudicator); and creating separate standalone entities (MedSchool_Ext, LawSchool_Ext) linked via foreign keys introduces unnecessary table joins for simple text strings."
+  },
+  {
+    "id": "q64",
+    "question": "An insurance carrier requires that a claim be flagged as potential fraud when the Loss Date on a claim is changed, and a review activity and history entry be created. Which configuration will accomplish this?",
+    "options": [
+      "Create a Preupdate Rule that flags the claim and creates a history entry; a ClaimException Rule will create an escalation activity for the supervisor",
+      "Create a Preupdate Rule that checks for a change to the Loss Date field and flags the claim and creates the review activity and history entry",
+      "Create a PostSetup Rule that checks for a change to the Loss Date field and flags the claim, which creates a supervisor activity and history entry",
+      "Create a Validation Rule to determine if Policy is in force on the new Loss Date and only take action if the new Loss Date is outside the Policy effective dates"
+    ],
+    "correct_answers": [
+      "Create a Preupdate Rule that checks for a change to the Loss Date field and flags the claim and creates the review activity and history entry"
+    ],
+    "choose_x_options": 1,
+    "explanation": "2nd Option is correct: Preupdate rules execute when an entity is saved prior to database commit. They can inspect whether specific fields have changed (using methods like isFieldChanged(\"LossDate\")), adjust field values, and instantiate child records like activities and history entries within the transaction. Other Options are incorrect: Splitting the logic across ClaimException rules adds unnecessary complexity; PostSetup rules execute only once upon initial claim creation rather than during subsequent updates; and Validation rules are intended to show error/warning messages to block commits, not to generate activities or history logs."
+  },
+  {
+    "id": "q65",
+    "question": "An insurer needs to define a new Typecode on an existing base application Typelist. Which actions follow best practices for implementing this requirement in Guidewire InsuranceSuite? (Select two)",
+    "options": [
+      "Create an extension file if it does not already exist.",
+      "Define the new Typecode within the base Typelist's internal extension file.",
+      "Modify the typelist's .java file so that the new Typecode is added in the Typelist's definition file.",
+      "Define the new Typecode within the base Typelist's .tti file.",
+      "Create a new standalone Typelist with the new category.",
+      "Define the new Typecode within the base Typelist's .ttx file."
+    ],
+    "correct_answers": [
+      "Create an extension file if it does not already exist.",
+      "Define the new Typecode within the base Typelist's .ttx file."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st & 6th Options are correct: Base application typelists (.tti files in the Metadata folder) are read-only. To add custom typecodes to an existing base typelist, developers must locate or create a Typelist Extension file (.ttx) under configuration/config/extensions/typelist/ and declare the new typecode within that .ttx file. Other Options are incorrect: Base .tti files and internal .tix files in Metadata are strictly read-only; generated .java files must never be edited manually; and creating a brand-new standalone typelist does not extend the existing base typelist."
+  },
+  {
+    "id": "q66",
+    "question": "Given a location with an in-line Detail View with several Input widgets. Which actions would configure this detail view to enable editing and follow best practices, assuming it currently displays data in read-only mode? (Select two)",
+    "options": [
+      "Define variables for the detail view using the Variables tab.",
+      "Configure the Location's canEdit property with a Gosu expression that will return a 'true' boolean value.",
+      "Use an Input Set instead of a Detail View Panel for displaying editable data.",
+      "Set the detail view panel's mode property to editable.",
+      "Set the Detail View Panel's canEdit property with a Gosu expression that will return a 'true' boolean value.",
+      "Add Edit Buttons widget to the Screen which contains the Detail View."
+    ],
+    "correct_answers": [
+      "Configure the Location's canEdit property with a Gosu expression that will return a 'true' boolean value.",
+      "Add Edit Buttons widget to the Screen which contains the Detail View."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd Option is correct: In Guidewire PCF architecture, editability of a screen location is governed by the location's canEdit property. If canEdit evaluates to false, the page/location remains in read-only mode regardless of underlying settings. 6th Option is correct: An Edit Buttons widget must be added to a toolbar on the containing Screen. Placing Edit Buttons on the Screen automatically provides the Edit, Update, and Cancel mode-switching capabilities across all nested child containers (including inline Detail Views). 1st, 3rd, 4th, and 5th Options are incorrect: An inline Detail View inherits variables directly from the parent location and does not define its own required variables; an Input Set cannot replace a Detail View (it must be contained within one); Detail View panels do not have a mode property set to \"editable\"; and Detail View Panels do not have a canEdit property (the canEdit attribute belongs to locations/screens)."
+  },
+  {
+    "id": "q67",
+    "question": "After manually triggering a build chain in TeamCity, how can a developer monitor its progress and identify potential issues, based on the information provided in the sources? (Select two)",
+    "options": [
+      "By monitoring the build status and logs in TeamCity.",
+      "By checking the status in the Build Promotion app.",
+      "By viewing the deployment status in the Planets app.",
+      "By reviewing the metrics in the Datadog dashboards.",
+      "By examining the build logs within the TeamCity interface.",
+      "By checking for quality gate verification status in the Quality Gates app."
+    ],
+    "correct_answers": [
+      "By monitoring the build status and logs in TeamCity.",
+      "By examining the build logs within the TeamCity interface."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st and 5th Options are correct: The documentation states that when a build chain runs in TeamCity, developers monitor the execution progress and status bar in the TeamCity UI (e.g., tracking Server Tests, Build Application, and Dockerize Application stages). When a failure occurs, the developer investigates the issue by examining the build logs directly within the TeamCity interface (such as identifying compilation or test failures) to take corrective action. 2nd, 3rd, 4th, and 6th Options are incorrect: The Build Promotion app and Planets app are used after the build chain successfully finishes to promote and deploy the resulting Docker image; Datadog is used for runtime telemetry and application logs on running planets; and the Quality Gates app checks pre-merge/pre-promotion criteria rather than streaming real-time TeamCity build steps."
+  },
+  {
+    "id": "q68",
+    "question": "Which cloud service provider does Guidewire use to store files when using the Storage Access app? (Select 1)",
+    "options": [
+      "Amazon Aurora",
+      "Amazon EC2",
+      "Kubernetes",
+      "AWS S3",
+      "Amazon Dynamo DB"
+    ],
+    "correct_answers": [
+      "AWS S3"
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: On Guidewire Cloud Platform (GWCP), object and file storage (such as documents, external backups, and unstructured file payload assets via Storage Access / Cloud storage frameworks) is provided using AWS S3 (Amazon Simple Storage Service). 1st, 2nd, 3rd, and 5th Options are incorrect: Amazon Aurora PostgreSQL provides relational database storage (clusters and snapshot backups); Amazon EC2 / Kubernetes provide compute/container infrastructure; and DynamoDB is a NoSQL database not used for file storage."
+  },
+  {
+    "id": "q69",
+    "question": "A List View displaying historical contact interactions is loading very slowly because the entity array contains thousands of rows, leading to high response times and memory pressure. To address this performance issue and adhere to best practices, which implementation techniques should the developer use? (Select two)",
+    "options": [
+      "Retrieve the entire unfiltered collection of historical records, then use the Gosu .where() array method in the data source definition to filter the results in the application server memory.",
+      "Implement the filtering logic using .compare() on the underlying Gosu Query object that provides the data source, ensuring the data restriction occurs at the database level.",
+      "Configure a ListView Filter widget in the PCF which utilizes an efficient Standard Query Query Filter (SQQF) to restrict the number of results returned from the database.",
+      "Embed conditional logic inside the visible property of each Row element within the List View to display only the desired records to the user after all data has been loaded.",
+      "To simplify the data retrieval code, define the list view's data source using multi-path Gosu dot notation queries across Foreign Keys and Arrays, relying on inefficient accessors.",
+      "Modify the entity's row iterator to include a .select().Count() call immediately before defining the array of data to ensure the database executes the query as quickly as possible."
+    ],
+    "correct_answers": [
+      "Implement the filtering logic using .compare() on the underlying Gosu Query object that provides the data source, ensuring the data restriction occurs at the database level.",
+      "Configure a ListView Filter widget in the PCF which utilizes an efficient Standard Query Query Filter (SQQF) to restrict the number of results returned from the database."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd Option is correct: Guidewire best practices mandate pushing filtering down to the database engine by using Query.make() and .compare() clauses rather than filtering in application server memory. 3rd Option is correct: Configuring ListView Filters (Toolbar Filters) that utilize Gosu Standard Query Filters restricts query result sets at the database level, optimizing system resources and reducing screen load times. 1st, 4th, 5th, and 6th Options are incorrect: In-memory .where() filtering is an explicit anti-pattern that bloats server heap memory; using the visible property on rows still loads all rows across the network; dot-notation paths across arrays trigger inefficient implicit queries; and calling .select().Count() adds redundant overhead before data retrieval."
+  },
+  {
+    "id": "q70",
+    "question": "An insurer imports information used to calculate replacement values for property claims on a monthly basis. The information is summarized in a non-editable list. A business analyst has presented a new requirement to support editing individual records when new information is received between scheduled imports. What location type will satisfy this requirement? (Select one)",
+    "options": [
+      "A popup",
+      "An exit point",
+      "A location group",
+      "Edit buttons"
+    ],
+    "correct_answers": [
+      "A popup"
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: The documentation defines: \"Popup use case 1: View and edit existing objects: A popup can be used to view and edit an object... For example, a list view panel will often only display a limited number of object fields... The navigation cell widgets will navigate to a popup so that a user can view and/or edit the object fields.\" Once closed, the popup commits changes and the parent list view refreshes from the database. 2nd, 3rd, and 4th Options are incorrect: An exit point routes to an external web URL; a location group organizes top-level navigation, pages, and sidebar links; and Edit buttons are container/toolbar widgets, not a location type."
+  },
+  {
+    "id": "q71",
+    "question": "Which statement is correct and recommended for writing GUnit tests? (Select 1)",
+    "options": [
+      "Clear all instance variables of completed test in the tearDown() method",
+      "Use fluent assertions over conventional assert statements",
+      "Use the init() method to set up objects shared by all tests in a test class",
+      "Handle any exceptions thrown by test methods in the finally() method"
+    ],
+    "correct_answers": [
+      "Use fluent assertions over conventional assert statements"
+    ],
+    "choose_x_options": 1,
+    "explanation": "2nd Option is correct: The documentation explicitly highlights as a core best practice: \"Use fluent assertions over conventional assert statements: Improved code readability; Implement using the PLAssertions class\". 1st, 3rd, and 4th Options are incorrect: Clearing instance variables and handling test exceptions is handled in afterMethod() (calling super.afterMethod(possibleException)), not in a tearDown() or finally() method; and one-time initialization of shared objects is executed in beforeClass(), not init()."
+  },
+  {
+    "id": "q72",
+    "question": "A business process requires adding a new status value to the base application's ClaimStatus Typelist. Which two methods are best practices for this configuration? (Select 2)",
+    "options": [
+      "Add a Typecode for the new status value to the typelist's .java file.",
+      "Modify the base application's ClaimStatus.tti file.",
+      "Create a .ttx extension file for ClaimStatus.",
+      "Add a Typecode for the new status value to the ClaimStatus extension file (.ttx).",
+      "Create a new Typelist ClaimStatusExtension_Ext.tti.",
+      "Add a Typecode for the new status value to the ClaimStatus internal extension Typelist (.tix)."
+    ],
+    "correct_answers": [
+      "Create a .ttx extension file for ClaimStatus.",
+      "Add a Typecode for the new status value to the ClaimStatus extension file (.ttx)."
+    ],
+    "choose_x_options": 2,
+    "explanation": "3rd and 4th Options are correct: Base application typelists (.tti) are read-only to ensure upgrade safety. To add new typecodes to a base typelist, the developer must create a Typelist Extension file (.ttx) in the extensions/typelist directory (e.g., ClaimStatus.ttx) and declare the new typecode entries (appended with _Ext) inside that .ttx file. 1st, 2nd, 5th, and 6th Options are incorrect: Generated .java files must never be edited manually; .tti base files in metadata/typelist are strictly read-only; creating a separate .tti creates an entirely different typelist instead of extending the existing base one; and .tix files are internal extensions reserved strictly for Guidewire development and cannot be modified by configurators."
+  },
+  {
+    "id": "q73",
+    "question": "This code sample performs poorly due to the use of dot notation with multiple array expansions: var lineItems = Claim.Exposures*.Transactions*.LineItems What is the recommended best practice to improve the performance of this code? (Select two)",
+    "options": [
+      "Write a query that fetches the addresses into a collection then uses where() to filter the results",
+      "Rewrite the code with a nested for loop to retrieve the results",
+      "Break the code into multiple Gosu queries to retrieve the results for each array",
+      "Replace the dot notation syntax in the code with ArrayLoader syntax"
+    ],
+    "correct_answers": [
+      "Replace the dot notation syntax in the code with ArrayLoader syntax"
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: The documentation directly addresses this anti-pattern: \"Addressing Dot Notation Performance Issues: Replace dot notation for multidimensional array expansion with the ArrayLoader class... When the .arrays() method is used, the path is translated into a single, efficient bulk query for the entire result set rather than executing N individual queries for each parent record.\" 1st, 2nd, and 3rd Options are incorrect: .toCollection().where() is an explicit anti-pattern that creates heap memory bloat; nested for loops using dot notation cause repeated database queries and massive bundle expansion; and writing multiple separate manual queries is less efficient than using the built-in bulk ArrayLoader."
+  },
+  {
+    "id": "q74",
+    "question": "A customer requires the same list of vehicles to appear on multiple DetailViews within PolicyCenter. Following best practices, which of the following steps would fulfill the requirement? (Select two)",
+    "options": [
+      "Place a Panel Ref on each Detail View to display the List View.",
+      "Place a Panel Ref on an InputColumn in each DetailView to display the List View.",
+      "Place a ListViewInput on an existing DetailView, then copy/paste the configuration to the other DetailViews.",
+      "Place a ListViewInput on each DetailView to display the List View.",
+      "Place a ListViewInput inside the ListView to reference each of the DetailViews.",
+      "Create and configure a ListView file."
+    ],
+    "correct_answers": [
+      "Place a ListViewInput on each DetailView to display the List View.",
+      "Create and configure a ListView file."
+    ],
+    "choose_x_options": 2,
+    "explanation": "6th Option is correct: Following reusability best practices, whenever a List View needs to be displayed in multiple places, the developer should create a standalone, reusable List View PCF file (ending in LV.pcf). 4th Option is correct: A Detail View cannot directly contain a primary container like a List View via a PanelRef. To embed a List View inside a Detail View Panel / Input Column, Guidewire provides the ListViewInput widget, which forces the List View to behave as an input control within the Detail View. 1st, 2nd, 3rd, and 5th Options are incorrect: PanelRef cannot be placed inside Detail Views or Input Columns (it belongs directly under Screens or Cards); copy-pasting an inline configuration violates reusability standards; and a ListView cannot contain a ListViewInput referencing Detail Views."
+  },
+  {
+    "id": "q75",
+    "question": "Which actions are required to add new properties and methods to a Gosu class without directly modifying it? (Select two)",
+    "options": [
+      "Create a new Gosu class in a customer-specific package extending the original Gosu class.",
+      "Add the properties and methods to the Gosu class.",
+      "Add the properties and methods to the Java class generated from the Gosu class.",
+      "Add the properties and methods to the enhancement that was just created.",
+      "Create a Gosu Enhancement in a customer-specific package for the Gosu class."
+    ],
+    "correct_answers": [
+      "Add the properties and methods to the enhancement that was just created.",
+      "Create a Gosu Enhancement in a customer-specific package for the Gosu class."
+    ],
+    "choose_x_options": 2,
+    "explanation": "5th and 4th Options are correct: The documentation explains that Gosu enhancements allow you to augment classes and types with additional concrete methods and properties without directly modifying the source code or subclassing. The developer creates a Gosu Enhancement (.gsx file) in a customer-specific package (si.*) targeted to that class, and then defines the new properties (getters/setters) and methods directly inside the enhancement. 1st, 2nd, and 3rd Options are incorrect: Subclassing (1st Option) creates a separate child type rather than augmenting the original class directly; modifying the original class directly violates the premise of \"without directly modifying it\"; and editing generated Java classes is strictly unsupported."
+  },
+  {
+    "id": "q76",
+    "question": "An insurer is implementing a new process that requires storing data about claim reviews in a new entity. For each claim, there could be multiple claim reviews. Which actions represent best practices to implement this new entity? (Select three)",
+    "options": [
+      "Create the ClaimReview_Ext definition in an .etx file in the extensions/entity folder.",
+      "Create the ClaimReview_Ext definition in an .eti file in the extensions/entity folder.",
+      "Create the ClaimReview_Ext definition in an .eti file in the metadata/entity folder.",
+      "Create the ClaimReview_Ext definition as a subtype of the Claim entity.",
+      "Place a foreign key Claim on the new ClaimReview_Ext entity.",
+      "Place a foreign key ClaimReviewID on the Claim entity.",
+      "Place an array key on the ClaimReview_Ext entity.",
+      "Place an array key on the Claim entity."
+    ],
+    "correct_answers": [
+      "Create the ClaimReview_Ext definition in an .eti file in the extensions/entity folder.",
+      "Place a foreign key Claim on the new ClaimReview_Ext entity.",
+      "Place an array key on the Claim entity."
+    ],
+    "choose_x_options": 3,
+    "explanation": "2nd Option is correct: New custom entities must be created as .eti files located in the \\modules\\configuration\\config\\extensions\\entity\\ folder with the _Ext suffix. 5th and 8th Options are correct: To establish a one-to-many relationship (one Claim has multiple Claim Reviews), an <array> element is defined on the parent entity (Claim), and a corresponding reverse foreign key (Claim) referencing the parent is placed on the child entity (ClaimReview_Ext) so that the application can query array members at runtime. 1st, 3rd, 4th, 6th, and 7th Options are incorrect: .etx files are used to extend existing entities, not create new ones; metadata/entity is reserved for read-only base platform entities; a ClaimReview is a related child entity, not a subtype of Claim; placing an FK on Claim would establish a many-to-one/one-to-one relationship instead of one-to-many; and array keys belong on the parent, not the child."
+  },
+  {
+    "id": "q77",
+    "question": "Which statements describe the purpose and behavior of Gosu Validation rules? (Select two)",
+    "options": [
+      "They are triggered automatically during the entity save process.",
+      "They provide client-side validation feedback as the user interacts with the UI.",
+      "They are executed only when explicitly called from Gosu code.",
+      "They ensure data integrity by validating entity state before committing changes.",
+      "They are primarily used for transforming data before saving.",
+      "They are defined using the validationExpression attribute in data model files."
+    ],
+    "correct_answers": [
+      "They are triggered automatically during the entity save process.",
+      "They ensure data integrity by validating entity state before committing changes."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st and 4th Options are correct: The documentation defines: \"Validation rules are written as Gosu rules and contain logic to validate complex logical conditions and/or relationships between entity fields... Validation during save: Checked when Validatable entity is committed to the database... to ensure that the user enters data that makes sense and that all necessary data is valid before committing changes.\" 2nd, 3rd, 5th, and 6th Options are incorrect: Gosu Validation rules are server-side rules fired during database commit, not client-side interactive UI checks; they are triggered automatically by the rule engine, not solely by explicit code calls; data transformation before commit is the role of Preupdate rules; and validationExpression is a widget-level property configured in PCF files, not in data model files."
+  },
+  {
+    "id": "q78",
+    "question": "Succeed Insurance needs to modify the ClaimCenter data model to add a new column to indicate the date and time that a contact on claim was interviewed about the loss. This new field will be added to the existing Person entity. Following best practices, which of the following options satisfies this requirement?",
+    "options": [
+      "Creating a Person_Ext.etx file and add a datetime field called InterviewDate_Ext.",
+      "Modify the out of the box Person.eti file and add a datetime field called InterviewDate.",
+      "Extend the out of the box Person.eti file by creating a Person.etx file and add a datetime field called InterviewDate_Ext.",
+      "Extend the out of the box Person.eti file by creating a Person.etx file and add a datetime field called InterviewDate.",
+      "Extend the out of the box Person.eti file by creating a Person_Ext.etx file and add a datetime field called InterviewDate_Ext.",
+      "Modify the out of the box Person.eti file and add a datetime field called InterviewDate_Ext."
+    ],
+    "correct_answers": [
+      "Extend the out of the box Person.eti file by creating a Person.etx file and add a datetime field called InterviewDate_Ext."
+    ],
+    "choose_x_options": 1,
+    "explanation": "3rd Option is correct: In Guidewire data model configuration, base application entities are read-only and cannot be modified directly. To add fields to a base entity (Person), you create an entity extension file (.etx) in extensions/entity that shares the exact same name as the base entity (Person.etx, without _Ext on the file name). Furthermore, every new field added to a base application entity must end with the _Ext suffix (InterviewDate_Ext) to ensure upgrade safety and prevent naming collisions. 1st, 2nd, 4th, 5th, and 6th Options are incorrect: Out-of-the-box .eti files are read-only and cannot be modified; .etx files extending base entities must not have _Ext in their file names; and fields added to base entities must have the _Ext suffix."
+  },
+  {
+    "id": "q79",
+    "question": "A business analyst has a requirement to use either the EmailAddress1 or EmailAddress2 field on ABContact as the email address, which will be used in multiple places. { var emailAddress = this.EmailAddress1 if(StringUtils.isEmpty(emailAddress) ) emailAddress = this.EmailAddress2 return emailAddress } Which enhancement component signature is appropriate for this implementation and follows best practice? (Select 1)",
+    "options": [
+      "function determineEmailAddress_Ext()",
+      "property get EmailAddress_Ext() : String",
+      "function emailAddress_Ext() : String",
+      "property set EmailAddress_Ext(emailAddress: String)"
+    ],
+    "correct_answers": [
+      "property get EmailAddress_Ext() : String"
+    ],
+    "choose_x_options": 1,
+    "explanation": "2nd Option is correct: The code calculates and returns a derived/virtual string value without taking input parameters or modifying entity data. Guidewire best practice states that derived values calculated from physical fields should be exposed as a getter property (property get). Furthermore, enhancement properties added to existing Guidewire entities must use PascalCase (UpperCamelCase) and append the _Ext suffix (EmailAddress_Ext() : String). 1st, 3rd, and 4th Options are incorrect: A getter property is preferred over a method when returning a read-only field value that takes no parameters; property set requires a parameter and is used to write/modify data; and method names use lowerCamelCase verbs, whereas property names use nouns."
+  },
+  {
+    "id": "q80",
+    "question": "Which of the following represents logging best practices? (Select two)",
+    "options": [
+      "Set the logging level to 'info' in the production environment.",
+      "Log all information that is necessary to diagnose the transaction.",
+      "Mask personally identifiable information (PII) before including it in a log message.",
+      "Log every transaction to ensure a complete audit trail.",
+      "Set the logging level to 'debug' in the production environment when diagnosing a production issue."
+    ],
+    "correct_answers": [
+      "Set the logging level to 'info' in the production environment.",
+      "Mask personally identifiable information (PII) before including it in a log message."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st Option is correct: The documentation explicitly notes: \"The logging level is set to INFO in production environments, therefore: Include enough messages to diagnose issues at the INFO level; Avoid excessive messages that clutter log files with information of little value.\" 3rd Option is correct: Data protection standards strictly mandate: \"Personally Identifiable Information (PII) and Payment Card Industry (PCI) data must never be output at any log level... Provide obfuscation patterns to handle Personally Identifiable Information\". Masking/obfuscating PII (e.g., using PublicIDs instead of sensitive personal fields) is a core best practice. 2nd, 4th, and 5th Options are incorrect: Logging \"all information\" or \"every transaction\" leads to excessive logging, severe performance degradation, disk exhaustion, and clutter; and running at debug level in production creates unacceptable overhead and violates production governance rules."
+  },
+  {
+    "id": "q81",
+    "question": "The following screenshot displays a segment of the menu items in the sidebar on a Guidewire application: ... The business analysts have uncovered a requirement that the Documents, History, Litigation, and Notes pages should be grouped under a single heading, to be called Legal Records. What is the best practice for accomplishing this? (Select 1)",
+    "options": [
+      "Rearrange the order of the sidebar so that the four pages are all together, set the indent property for all four pages, and insert a label above them, which reads Legal Records",
+      "Click the gear icon in the UI, select user settings, select Sidebar, set preferences for the four pages according to the desired view",
+      "Place the views associated with those four pages onto a single screen named Legal Records, and place that screen on the sidebar, removing the individual pages from the sidebar",
+      "Create a location group named Legal Records, containing those four items, and add it to the sidebar, removing the individual pages from the sidebar"
+    ],
+    "correct_answers": [
+      "Create a location group named Legal Records, containing those four items, and add it to the sidebar, removing the individual pages from the sidebar"
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: A Location Group is used to organize a set of related menu links (pages) and their associated locations into a unified group under a single heading on the sidebar. It serves as a structural navigation parent, grouping related views while maintaining consistent navigation elements."
+  },
+  {
+    "id": "q82",
+    "question": "Succeed Insurance would like to show only Vehicle Exposures in the Desktop Exposures ListView. Which actions follow best practices for implementing the requirement?",
+    "options": [
+      "Modify the Gosu query used to populate the ListView to include a where clause.",
+      "Apply filtering to the RowIterator definition within the ListView PCF.",
+      "Add a FilterOption using a Standard Gosu Query Filter to only display vehicle exposures.",
+      "Perform filtering in the database query that retrieves the data for the ListView.",
+      "Retrieve all records from the database and filter the collection in memory before passing it to the ListViewIterator.",
+      "Implement filtering logic directly in the PCF file using Gosu if statements in the cell widgets.",
+      "Implement filtering logic in an entity enhancement getter that provides the collection for the ListView."
+    ],
+    "correct_answers": [
+      "Perform filtering in the database query that retrieves the data for the ListView."
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: Best practices strongly dictate that filtering must be performed at the database level rather than in-memory. Developers must request only the entities from the database that are essential to the current action by pushing the query restriction down to the database level, which conserves application server memory and CPU processing time. Developers should explicitly avoid in-memory filtering methods such as .where() on full collections."
+  },
+  {
+    "id": "q83",
+    "question": "Guidewire Home provides self-service capabilities for managing storage access permissions for InsuranceSuite. According to the training, which app in Guidewire Home is used for this purpose? (Select 1)",
+    "options": [
+      "The Lifecycle Manager app",
+      "The Build Promotion app",
+      "The Planets app",
+      "The Quality Gates app",
+      "The Storage Access app"
+    ],
+    "correct_answers": [
+      "The Storage Access app"
+    ],
+    "choose_x_options": 1,
+    "explanation": "5th Option is correct: The question directly identifies that the \"Storage Access app\" is the tool used for managing external storage files/access (such as those residing in AWS S3)."
+  },
+  {
+    "id": "q84",
+    "question": "A TeamCity build for an InsuranceSuite application has failed after a recent code commit. According to the training, to troubleshoot this failure, what should be examined? (Select 1)",
+    "options": [
+      "The build logs in TeamCity to identify specific errors or failures.",
+      "The Storage Access permissions for the build agent.",
+      "The Datadog dashboards for application performance metrics.",
+      "The Lifecycle Manager logs for configuration resource errors.",
+      "The deployment record for associated branch in the target planet."
+    ],
+    "correct_answers": [
+      "The build logs in TeamCity to identify specific errors or failures."
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: To troubleshoot and remediate a failed build in the TeamCity CI/CD pipeline, developers should inspect the TeamCity build and test logs to pinpoint the exact compilation syntax errors, failing assertions, or quality gate violations."
+  },
+  {
+    "id": "q85",
+    "question": "A new entity is needed to track details of medical procedures related to claims. Which configurations represent best practices for creating this entity? (Select 1)",
+    "options": [
+      "Create the entity in an .etx file for MedicalProcedure.",
+      "Define the new entity as a subtype of the Claim entity.",
+      "Create the entity in an .eti file for MedicalProcedure.",
+      "Create the entity in an .etx file for MedicalProcedure_Ext.",
+      "Create the entity in an .eti file for MedicalProcedure_Ext."
+    ],
+    "correct_answers": [
+      "Create the entity in an .eti file for MedicalProcedure_Ext."
+    ],
+    "choose_x_options": 1,
+    "explanation": "5th Option is correct: A custom entity created by the customer is defined in a new .eti file. To ensure upgrade safety and prevent naming conflicts during future application upgrades, Guidewire best practices mandate that new custom entities must be named with the suffix _Ext. Extension files (.etx) are only used to add fields to existing base application entities, not for creating brand-new entities."
+  },
+  {
+    "id": "q86",
+    "question": "You are a developer using Guidewire Studio to manage and improve the quality of your codebase. One of your tasks involves running inspections to identify potential issues in your Gosu code. Guidewire Studio provides various tools and plugins to perform static analysis and ensure best practices are followed. Which of the following are true about Guidewire Inspections? (Select 1)",
+    "options": [
+      "Once inspections are installed developers cannot edit them to change the severity or scope of the inspection.",
+      "Inspections must be triggered manually using the Analyze toolbar option. Developer can choose to run all of the inspections or by an inspection name.",
+      "Inspections run automatically in the Gosu editor as a background task.",
+      "There are no inspections provided with the out of the box version of the product. Inspections must be added from Guidewire community.",
+      "Developers can create custom inspections profile in Studio to include any customer specific standards that are to be enforced.",
+      "Inspections are run at the command line by running the gwb inspect. The output is placed in a file inspections folder of the project."
+    ],
+    "correct_answers": [
+      "Inspections run automatically in the Gosu editor as a background task."
+    ],
+    "choose_x_options": 1,
+    "explanation": "3rd Option is correct: Guidewire Studio Inspections run automatically in the background as you write code in the Gosu Editor, providing real-time feedback by highlighting potential violations and anomalies directly in the code."
+  },
+  {
+    "id": "q87",
+    "question": "Which of the options below follow best practices for logging exceptions? (Select two)",
+    "options": [
+      "All exceptions should be logged at the \"error\" level.",
+      "If the exception is expected, it can be logged at the warn or info level.",
+      "Log exceptions at the \"warn\" level when the user experience is affected.",
+      "Log exceptions at the \"error\" level when the user experience is affected.",
+      "All exceptions should be logged at the 'trace' level."
+    ],
+    "correct_answers": [
+      "If the exception is expected, it can be logged at the warn or info level.",
+      "Log exceptions at the \"error\" level when the user experience is affected."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd and 4th Options are correct: Guidewire logging best practices dictate that exceptions which affect the user experience should be logged at the \"ERROR\" level. However, not all exceptions are errors; if an exception is expected or handled as part of an intended flow, it can be logged at the \"WARN\" or \"INFO\" level."
+  },
+  {
+    "id": "q88",
+    "question": "The customer needs to rank the severity of service requests. Which configurations represent best practices for fulfilling this requirement? (Select 1)",
+    "options": [
+      "Create a new file, ServiceSeverity_Ext.tti, in the Extensions\\Typelist folder.",
+      "Create a new file, ServiceSeverity_Ext.ttx, in the Extensions\\Typelist folder.",
+      "Create a new file, ServiceSeverity_Ext.tti, in the Metadata\\Typelist folder.",
+      "Define a new typelist as a subtype of the ServiceRequest entity."
+    ],
+    "correct_answers": [
+      "Create a new file, ServiceSeverity_Ext.tti, in the Extensions\\Typelist folder."
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: When creating a completely new custom typelist from scratch, you must create a new .tti file within the Extensions\\Typelist folder. Furthermore, you must append the _Ext suffix to the name of the new typelist to prevent upgrade collisions. Base .tti files in the Metadata folder are strictly read-only."
+  },
+  {
+    "id": "q89",
+    "question": "A developer needs to prepare their local configuration changes for inclusion in the shared Bitbucket repository. According to the training, which actions, performed using Git-based commands in a GWCP context, are essential for this process? (Select three)",
+    "options": [
+      "Configuring pre-promotion quality gates.",
+      "Committing the changes locally.",
+      "Pushing the finished branch to the remote Bitbucket repository.",
+      "Pulling the latest changes from the remote repository and rebasing the developer's commit(s).",
+      "Creating a new build schedule in TeamCity.",
+      "Deploying the application to a development planet."
+    ],
+    "correct_answers": [
+      "Committing the changes locally.",
+      "Pushing the finished branch to the remote Bitbucket repository.",
+      "Pulling the latest changes from the remote repository and rebasing the developer's commit(s)."
+    ],
+    "choose_x_options": 3,
+    "explanation": "The 2nd, 3rd, and 4th Options are correct: The standard Git developer workflow requires staging and committing the changes locally (git commit). Before publishing, the developer must fetch upstream updates and rebase their local feature branch against the latest integration branch (git fetch and git rebase origin/develop) to integrate changes. Finally, the developer must push the branch (git push) to the remote Bitbucket server to make the code available for peer review and CI/CD processing."
+  },
+  {
+    "id": "q90",
+    "question": "There is a requirement to add fields specific to Auto Rental Agencies. The additional fields required are: Auto Rental License, Offers Roadside Assistance, and Offers Insurance. Other fields will come from the existing ABCompanyVendor entity. How should this requirement be configured following best practices?",
+    "options": [
+      "Create ABAutoRentalAgency_Ext as a subtype of ABCompany and add the three fields to the subtype",
+      "Create a custom entity ABAutoRentalAgency_Ext and add the three fields to this entity",
+      "Create three new fields to extend the existing ABCompanyVendor subtype",
+      "Create ABAutoRentalAgency_Ext as a subtype of ABCompanyVendor and add the three fields to the subtype"
+    ],
+    "correct_answers": [
+      "Create ABAutoRentalAgency_Ext as a subtype of ABCompanyVendor and add the three fields to the subtype"
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: Because the new fields are highly specific to just Auto Rental Agencies and are intended to treat this specific group differently from other vendor types, a new specialized subtype should be created instead of adding the fields generally to the parent entity. Since it shares the common vendor characteristics, it should logically subclass ABCompanyVendor within the subtype hierarchy."
+  },
+  {
+    "id": "q91",
+    "question": "When the application displays a dropdown list with multiple locations that share the same name, the business also wants to show the street address, allowing people to distinguish between the locations. According to best practices, what is the recommended way to configure this?",
+    "options": [
+      "Use a dynamic field on Location for the display string.",
+      "Implement a getter property on a Location enhancement returning “Name (Address Line 1)”.",
+      "Modify the picklist PCF to display “Location Name” and “Address Line 1” in separate columns.",
+      "Add a custom field to Location for storing the combined display string.",
+      "Modify the Location entity's entity name to include the Address Line 1."
+    ],
+    "correct_answers": [
+      "Modify the Location entity's entity name to include the Address Line 1."
+    ],
+    "choose_x_options": 1,
+    "explanation": "5th Option is correct: To change how an entity instance is represented as text in the user interface—such as displaying additional distinguishing details in drop-down lists—developers configure the \"Entity Name\" programming logic for that entity instance. Editing the entity name variables and return value in Guidewire Studio directly controls the default display string rendered across the application."
+  },
+  {
+    "id": "q92",
+    "question": "The ExposureDesktopViewList view entity needs to display a new field IncidentType_Ext that has been added to the base Incident entity. Which configurations are required?",
+    "options": [
+      "Create a new view entity Exposure_Ext.",
+      "Ensure the IncidentType_Ext field is added to Incident.etx.",
+      "Use a dynamic field in the Exposure entity enhancement.",
+      "Add the IncidentType_Ext field directly to the ExposureDesktopViewList view entity definition.",
+      "Reference the IncidentType_Ext field from the ExposureDesktopViewList view entity extension.",
+      "Modify the base application's ExposureDesktopViewList View entity file."
+    ],
+    "correct_answers": [
+      "Ensure the IncidentType_Ext field is added to Incident.etx.",
+      "Reference the IncidentType_Ext field from the ExposureDesktopViewList view entity extension."
+    ],
+    "choose_x_options": 2,
+    "explanation": "2nd and 5th Options are correct: To successfully map the new field through to the View Entity, you must first ensure the custom field (IncidentType_Ext) physically exists on the base target entity by extending it via an .etx file (Incident.etx). Then, you must extend the view entity's data model definition to map the new path property into the view, which avoids making changes to the read-only base files."
+  },
+  {
+    "id": "q93",
+    "question": "Which of the following must be done when creating a Modal Input Set to display distinct properties of subtypes?",
+    "options": [
+      "Create a Modal Input Set file for each subtype.",
+      "Ensure that each Modal Input Set is referenced in its parent InputSetGroup.",
+      "Place each Input Set on a Detail View and use the visible property to control which properties are to be displayed.",
+      "Create a default InputSet to be displayed when a matching mode is not found.",
+      "Add the same Required Variables for each Modal Input Set.",
+      "Set the visible property of each Modal Input Set to the subtype name.",
+      "Create a single Detail view that includes the fields for all subtypes and configure the visible property of each field accordingly."
+    ],
+    "correct_answers": [
+      "Create a Modal Input Set file for each subtype.",
+      "Create a default InputSet to be displayed when a matching mode is not found.",
+      "Add the same Required Variables for each Modal Input Set."
+    ],
+    "choose_x_options": 3,
+    "explanation": "The 1st, 4th, and 5th Options are correct: When dealing with varying scenarios (like subtypes), the best approach is to use a series of separate Modal PCFs (like Input Sets) created for each specific scenario. To function as a valid modal PCF set, every PCF in the set must share the exact same ID and specify the exact same number, type, and order of required variables. Additionally, the set must contain one PCF with the mode set to default (lowercase) as a fallback when a specific mode cannot be mapped."
+  },
+  {
+    "id": "q94",
+    "question": "Which scenario follows best practices for user interface field-level validation?",
+    "options": [
+      "Store different social media profile addresses, regardless of the social media site involved.",
+      "The city and state populate automatically whenever a US user enters their ZIP code.",
+      "The interest rate field is 0 whenever a down payment is greater than $5000.",
+      "Proposed changes to user passwords contain only alphanumeric characters."
+    ],
+    "correct_answers": [
+      "Proposed changes to user passwords contain only alphanumeric characters."
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: Field-level validation uses pattern matching techniques—specifically regular expressions—to verify that data entered into a field follows a strictly required format before saving. Restricting a password string to \"only alphanumeric characters\" is the exact type of structural string formatting restriction handled by field-level pattern matching. The other options describe dynamic behavior, defaulting, or complex business logic."
+  },
+  {
+    "id": "q95",
+    "question": "Examine the following options intended as Gosu boolean expressions for a validationExpression on an input widget. Which uses correct Gosu syntax and follows Gosu best practices?",
+    "options": [
+      "myCollection.Count > 0 and myValue == true",
+      "myValue == true ? null :",
+      "myNumber is greater than 10 and myNumber is less than 20",
+      "myValue == true and !(boolValue)",
+      "myString.IsNullOrEmpty() or myNumber == 0"
+    ],
+    "correct_answers": [
+      "myValue == true ? null :"
+    ],
+    "choose_x_options": 1,
+    "explanation": "2nd Option is correct: In the Guidewire user interface, a validationExpression property expects a logical condition evaluating the single field, and it returns null if the data is valid, or a localized string (the error message) if the data violates the condition. The ternary operator pattern (condition ? null : \"error message\") perfectly implements this requirement for the validationExpression widget property. (Note: Option 4 uses the symbol format !, which violates Gosu coding standards, and Option 1 evaluates .Count > 0 on an array, which is an anti-pattern for performance)."
+  },
+  {
+    "id": "q96",
+    "question": "What are two types of Guidewire Profiler?",
+    "options": [
+      "Entry-point",
+      "Database Performance",
+      "Web",
+      "Worksheet",
+      "Exit-point"
+    ],
+    "correct_answers": [
+      "Entry-point",
+      "Web"
+    ],
+    "choose_x_options": 2,
+    "explanation": "The document identifies Web Profiler and Entry-Point Profiler as profiler types. Entry-point profiling covers batch processes, work queues, message destinations, web services, and startable plugins."
+  },
+  {
+    "id": "q97",
+    "question": "Given the following Gosu method definition: function formalName( firstName : String, lastName String ) : Integer { return \"lastName\" + \", \" + \"firstName\" } Identify the errors in this Gosu method definition.",
+    "options": [
+      "The parameter firstName is not correctly declared.",
+      "The return type is incorrect.",
+      "Parentheses around the parameters are missing.",
+      "String concatenation syntax is incorrect.",
+      "The parameter lastName is not correctly declared.",
+      "The method name formalName does not follow camel case."
+    ],
+    "correct_answers": [
+      "The return type is incorrect.",
+      "The parameter lastName is not correctly declared."
+    ],
+    "choose_x_options": 2,
+    "explanation": "firstName : String is correctly declared. lastName is missing its : String type declaration. Also, the method returns a concatenated String, so the declared Integer return type is incorrect. The method name formalName follows camelCase, and the parentheses/string concatenation syntax is valid."
+  },
+  {
+    "id": "q98",
+    "question": "A list of read-only history entries has been placed on a screen. The business would like the ability to modify existing rows. Following best practices, which configurations are needed?",
+    "options": [
+      "Add a toolbar to the ListView.",
+      "Wrap the ListView in an InputSet.",
+      "Set the readonly property on the ListView to false.",
+      "Add an EditButtons widget to the screen containing the list view.",
+      "Use a LocationGroup for editing.",
+      "Ensure that the editable property is set to true for the ListView, RowIterator, Row, and each Cell in the ListView."
+    ],
+    "correct_answers": [
+      "Add a toolbar to the ListView.",
+      "Ensure that the editable property is set to true for the ListView, RowIterator, Row, and each Cell in the ListView."
+    ],
+    "choose_x_options": 2,
+    "explanation": "Editable ListViews require the appropriate editable hierarchy. The document specifically demonstrates configuring editable: true on the RowIterator, while the ListView architecture requires editability through the ListView hierarchy. A toolbar associated with the ListView provides the appropriate ListView/iterator controls."
+  },
+  {
+    "id": "q99",
+    "question": "A developer needs to run multiple GUnit test classes so that they can be run at the same time. Which two statements are true about the included tests?",
+    "options": [
+      "They must be based on the same GUnit base class",
+      "They must be in the same GUnit class",
+      "They must set TestResultsDir property",
+      "They must use the assertTrue() function",
+      "They must have the same @Suite annotation"
+    ],
+    "correct_answers": [
+      "They must be based on the same GUnit base class",
+      "They must have the same @Suite annotation"
+    ],
+    "choose_x_options": 2,
+    "explanation": "The document explicitly states that all test classes in a suite must be based on the same class type and must have the same @Suites annotation string."
+  },
+  {
+    "id": "q100",
+    "question": "A user checks an 'Is International Address' checkbox, and based on this selection, the 'Country' field should immediately become required. Following best practices, how should a developer configure this requirement?",
+    "options": [
+      "Configure this requirement in the inputConversion on the checkbox.",
+      "Configure this logic in a Validation rule.",
+      "Configure the required property on the 'Country' field.",
+      "Configure this check in a Gosu pre-update rule.",
+      "Configure the PostOnChange property on the checkbox."
+    ],
+    "correct_answers": [
+      "Configure the required property on the 'Country' field.",
+      "Configure the PostOnChange property on the checkbox."
+    ],
+    "choose_x_options": 2,
+    "explanation": "The required property belongs on the Country field, while PostOnChange on the checkbox causes the changed checkbox value to be posted immediately to the server so the Country field's dynamic property can be reevaluated. The document explains that Post On Change triggers server reevaluation of other widget properties."
+  },
+  {
+    "id": "q101",
+    "question": "Suppose that you need to refactor a Gosu query code to filter records in the database instead of filtering in memory. Following best practices, what is the best way to perform this task?",
+    "options": [
+      "Iterating through the results collection using for and if statements to filter records.",
+      "Using the compare() method on the Query object with the appropriate condition.",
+      "Using the filter() method on the Query object with the appropriate condition.",
+      "Using the where() method to filter records from the results collection.",
+      "Using the select().filter() methods on the Query definition."
+    ],
+    "correct_answers": [
+      "Using the compare() method on the Query object with the appropriate condition."
+    ],
+    "choose_x_options": 1,
+    "explanation": "The document explicitly identifies .compare() on the Query object as the best practice for pushing filtering to the database. In-memory .where() filtering is specifically identified as an anti-pattern."
+  },
+  {
+    "id": "q102",
+    "question": "During an implementation, which Git branch contains code across all releases including code under active development?",
+    "options": [
+      "Master branch",
+      "Mainline branch",
+      "Product release branch",
+      "Production branch"
+    ],
+    "correct_answers": [
+      "Mainline branch"
+    ],
+    "choose_x_options": 1,
+    "explanation": "The document states that the develop/Mainline branch consolidates code across all release stages, including future releases under active development."
+  },
+  {
+    "id": "q103",
+    "question": "Given the following code sample, what two items should be added or changed to follow best practices?",
+    "options": [
+      "company = newBundle.add(company) before setting company.Notes;",
+      "Pass a value for the user.",
+      "bundle.commit() should not be added because runWithNewBundle() performs an implicit commit."
+    ],
+    "correct_answers": [
+      "company = newBundle.add(company) before setting company.Notes;",
+      "Pass a value for the user."
+    ],
+    "choose_x_options": 2,
+    "explanation": "Query results are returned in a read-only bundle, so the company must be copied into the writable newBundle before modification. Also, the runWithNewBundle(..., user) form requires a user when there is no inherent user context. The existing \"su\" should not be hardcoded as a best practice. bundle.commit() should not be added because runWithNewBundle() performs an implicit commit."
+  },
+  {
+    "id": "q104",
+    "question": "You need to retrieve all BankAccount entities with a balance greater than $1000. Which query configurations perform filtering at the database level?",
+    "options": [
+      "Use the where() method on the resultset object of the BankAccount entity to filter by the balance.",
+      "Filter the bank accounts in the application server layer after retrieval.",
+      "Use a compare() method on the query object of the BankAccount entity to define the balance condition.",
+      "Use select() on the resultset object of bank accounts.",
+      "Retrieve all bank accounts into memory and use a Gosu if statement in a loop to select relevant ones.",
+      "Use the firstwhere() method on the resultset object of bank accounts."
+    ],
+    "correct_answers": [
+      "Use a compare() method on the query object of the BankAccount entity to define the balance condition."
+    ],
+    "choose_x_options": 1,
+    "explanation": ".compare() applies the restriction to the Query object and therefore generates database-level filtering. The document explicitly recommends this instead of in-memory filtering or collection .where()/.firstWhere()."
+  },
+  {
+    "id": "q105",
+    "question": "A developer runs Database Consistency Checks for a new ClaimCenter release in a QA environment running a copy of the production database. Analysis of the output identifies data errors in both the QA and production data. Which options follow best practices for correcting the data?",
+    "options": [
+      "Write a Gosu query and run it in Scratchpad to correct the data",
+      "Contact the insurer's database group for a SQL script and test it in QA",
+      "Export the data to a file, correct it, and run the Import Data Utility",
+      "Write a Gosu script and request that Guidewire Support review it",
+      "Use the Production Data Fix Tool to correct production data"
+    ],
+    "correct_answers": [
+      "Contact the insurer's database group for a SQL script and test it in QA",
+      "Use the Production Data Fix Tool to correct production data"
+    ],
+    "choose_x_options": 2,
+    "explanation": "The document emphasizes that production data fixes require controlled, reviewed fixes and specifically states that custom Gosu/SQL data-fix scripts must be reviewed and approved before production execution. It also recommends using vendor-approved fixes and testing SQL fixes before production."
+  },
+  {
+    "id": "q106",
+    "question": "A ListView shows contacts related to a Claim. When a user clicks the contact name in a text cell, the UI should open a Worksheet showing details of that contact. The elementName property in the row iterator is currentContact. Which is the correct approach?",
+    "options": [
+      "Set the actionAvailable property on the atomic widget to ContactWS.push(currentContact)",
+      "Set the Action property on the atomic widget to ContactWS.goInWorksheet(currentContact)",
+      "Set the Action property on the atomic widget to include ContactWS(currentContact)",
+      "Set the Action property on the atomic widget to ContactWS.goInWorkspace(currentContact)"
+    ],
+    "correct_answers": [
+      "Set the Action property on the atomic widget to ContactWS.goInWorkspace(currentContact)"
+    ],
+    "choose_x_options": 1,
+    "explanation": "The document's location navigation table states that a Worksheet uses goInWorkspace() and loads the worksheet into the workspace frame. push() is used for Popups and Exit Points."
+  },
+  {
+    "id": "q107",
+    "question": "A customer needs the ability to categorize claims based on business needs. Which actions below follow best practices?",
+    "options": [
+      "Create a .ttx file for ClaimCategory_Ext in the Extensions\\Typelist folder",
+      "Name the Typelist ClaimCategory without an _Ext suffix",
+      "Add a foreignkey to the ClaimCategory_Ext typelist that references the Claim entity",
+      "Create a .tti file for ClaimCategory_Ext in the Extensions\\Typelist folder",
+      "Add a ClaimCategory_Ext Typekey to the Claim entity",
+      "Define ClaimCategory_Ext as an extension of an existing claim Typelist"
+    ],
+    "correct_answers": [
+      "Create a .tti file for ClaimCategory_Ext in the Extensions\\Typelist folder",
+      "Add a ClaimCategory_Ext Typekey to the Claim entity"
+    ],
+    "choose_x_options": 2,
+    "explanation": "For a new custom typelist, the document specifies creating a .tti file in the Extensions/Typelist folder, with the typelist name ending in _Ext. The typelist is then referenced by adding a typekey to the target entity. .ttx is for extending an existing base typelist, not creating a new one."
+  },
+  {
+    "id": "q108",
+    "question": "The business needs to display the same set of read-only contact information (e.g., name, address, phone) for a single Contact on various pages. According to best practices, which UI component would be most suitable for achieving this reusability?",
+    "options": [
+      "A ListView file containing the contact information widgets.",
+      "A Popup containing the contact information widgets.",
+      "A DetailView widget embedded directly in each page with the contact information widgets.",
+      "An InputSet file containing the contact information widgets.",
+      "A Gosu class that builds the UI snippet.",
+      "A ListView widget embedded directly in each page with the contact information widgets."
+    ],
+    "correct_answers": [
+      "An InputSet file containing the contact information widgets."
+    ],
+    "choose_x_options": 1,
+    "explanation": "The document explicitly describes an Input Set as a reusable PCF container for grouping related widgets and states that standalone Input Set PCF files are reusable across multiple screens/detail views. The document also specifically recommends reusable Input Set PCFs whenever a group of fields needs to appear across multiple screens, cards, or detail views."
+  },
+  {
+    "id": "q109",
+    "question": "As a developer for Succeed Insurance, you have been given a requirement to add the following options to a ContactManager typelist BusinessType that was provided with the product: Auto Repair Shop Home Inspector Collection Agency Following best practices, which of the following options correctly adds these options to the existing typelist?",
+    "options": [
+      "Adding the following options to the existing BusinessType.ttx file: code: auto_repair_shop code: home_inspector code: collection_agency",
+      "Adding the following options to a new BusinessType_Ext.ttx file: code: auto_repair_shop code: home_inspector code: collection_agency",
+      "Adding the following options to a new BusinessType_Ext.ttx file: code: auto_repair_shop code: home_inspector code: collection_agency",
+      "Adding the following options to the BusinessType.tti file: code: auto_repair_shop code: home_inspector code: collection_agency",
+      "Adding the following options to a new BusinessType_Ext.tti file: code: auto_repair_shop_Ext code: home_inspector_Ext code: collection_agency_Ext",
+      "Adding the following options to the BusinessType.tti file: code: auto_repair_shop_Ext code: home_inspector_Ext code: collection_agency_Ext",
+      "Adding the following options to the existing BusinessType.ttx file: code: auto_repair_shop_Ext code: home_inspector_Ext code: collection_agency_Ext"
+    ],
+    "correct_answers": [
+      "Adding the following options to the existing BusinessType.ttx file: code: auto_repair_shop_Ext code: home_inspector_Ext code: collection_agency_Ext"
+    ],
+    "choose_x_options": 1,
+    "explanation": "7th Option is correct: To extend a base application typelist (which is defined in a read-only .tti file), developers must use a typelist extension file (.ttx) that shares the exact same name as the base typelist (e.g., BusinessType.ttx). Additionally, Guidewire best practices require that new custom typecodes added to base typelists end with the _Ext suffix to avoid naming conflicts during future application upgrades."
+  },
+  {
+    "id": "q110",
+    "question": "Succeed Insurance needs to modify an existing PolicyCenter typelist called PreferredContactMethod with the following options: Social Media Work Phone Work Email Following best practices, which of the following options would a developer use to implement these requirements?",
+    "options": [
+      "Create a typelist extension called PreferredContactMethod.ttx and add the options there.",
+      "Modify the existing PreferredContactMethod.tti file and add the options there.",
+      "Create a typelist extension called PreferredContactMethod_Ext.ttx and add the options there.",
+      "Create a typelist extension called PreferredContactMethod_Ext.tti and add the options there."
+    ],
+    "correct_answers": [
+      "Create a typelist extension called PreferredContactMethod.ttx and add the options there."
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: Base application typelists (.tti files) are read-only to prevent upgrade conflicts. To safely add new typecodes, developers must create a typelist extension file (.ttx) that shares the exact same filename as the base typelist being extended, without adding the _Ext suffix to the file name itself."
+  },
+  {
+    "id": "q111",
+    "question": "You are creating a new Gosu class for XYZ Insurance in ClaimCenter. According to the training, which of the package structures to store the new Gosu class follow best practices?",
+    "options": [
+      "xyz.cc.classes",
+      "gsrc.cc.classes",
+      "xyzinsurance.cc.classes",
+      "gsrc.classes.cc",
+      "cc.classes.ClaimFeed",
+      "xyzinsurance.claimcenter.classes"
+    ],
+    "correct_answers": [
+      "xyz.cc.classes",
+      "xyzinsurance.cc.classes"
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st and 3rd Options are correct: Guidewire best practices dictate that custom implementation code should be placed under a dedicated customer package space assigned a short name or abbreviation that defines the project or customer (e.g., xyz or xyzinsurance). Top-level customer packages are then divided by application-specific abbreviations like .cc for ClaimCenter, .bc for BillingCenter, or .pc for PolicyCenter. The gsrc directory is the physical root source folder, not a package name identifier used in the package hierarchy declaration."
+  },
+  {
+    "id": "q112",
+    "question": "What is a purpose of logging in deployed systems that follows best practices?",
+    "options": [
+      "Capturing the significant events for auditing",
+      "Troubleshooting payments by logging bank account numbers",
+      "Saving the runtime database queries and procedures",
+      "Recording the details of a user's login credentials"
+    ],
+    "correct_answers": [
+      "Capturing the significant events for auditing"
+    ],
+    "choose_x_options": 1,
+    "explanation": "1st Option is correct: The INFO logging level should be used to log the occurrence or result of important events, milestones, and integration calls to provide context and diagnostic auditing. 2nd and 4th Options violate strict Guidewire security policies that prohibit logging Personally Identifiable Information (PII), Payment Card Industry (PCI) data, credentials, and passwords at any log level."
+  },
+  {
+    "id": "q113",
+    "question": "There is a requirement for an additional filter on Desktop Activities. The filter requires a complex query. Which option will meet the requirement and follow best practices?",
+    "options": [
+      "Use a Gosu query with a \"where\" clause to find the needed rows, then pass the results to the filter",
+      "Create a function using a Gosu query and a subselect clause, then call that function from the filter property",
+      "Create a function using a Gosu query and compare clauses, then call that function from the filter property",
+      "Use a \"for\" loop with an \"if\" statement to find the needed rows, then pass the results to the filter"
+    ],
+    "correct_answers": [
+      "Create a function using a Gosu query and compare clauses, then call that function from the filter property"
+    ],
+    "choose_x_options": 1,
+    "explanation": "3rd Option is correct: To ensure optimal response times when filtering large datasets in ListViews, best practices dictate defining filter logic within reusable Gosu functions and invoking them directly from the filter property of a ToolbarFilterOption widget. These functions should execute queries using explicit .compare() clauses so that filtering executes as optimized SQL WHERE clauses directly on the database engine. Using .where() closures, in-memory loops, or nested subselects are documented performance anti-patterns that load unneeded entities into server memory and degrade performance."
+  },
+  {
+    "id": "q114",
+    "question": "A query needs to fetch Contact entities where the LastName is 'Smith'. Which methods ensure the filtering is done in the database?",
+    "options": [
+      "Use find() on the results collection.",
+      "Use the where() method on the results collection to filter by LastName.",
+      "Use a compare() method on the query object to filter by LastName.",
+      "Use the firstwhere() method on the results collection.",
+      "Filter the contacts in the UI.",
+      "Retrieve all contacts and use a Gosu loop to check the last name."
+    ],
+    "correct_answers": [
+      "Use a compare() method on the query object to filter by LastName."
+    ],
+    "choose_x_options": 1,
+    "explanation": "3rd Option is correct: To filter data at the database engine level rather than pulling records into memory, comparison criteria must be applied directly to the Query object using the .compare() method prior to executing the select() method. Using in-memory methods like .where(), .firstWhere(), or explicit Gosu loops forces the application to load unneeded entities into server memory, which severely degrades performance."
+  },
+  {
+    "id": "q115",
+    "question": "Succeed Insurance wants to display the age of each exposure in the Exposures page in ClaimCenter. Following best practices, what steps are needed to implement this requirement?",
+    "options": [
+      "Create an enhancement for the Exposure entity, if it does not already exist.",
+      "Define a getter property to calculate the age of each exposure.",
+      "Define a setter property to calculate the age of each exposure.",
+      "Define a column property to store the age of each exposure.",
+      "Create an entity extension for the Exposure entity, if it does not already exist."
+    ],
+    "correct_answers": [
+      "Create an enhancement for the Exposure entity, if it does not already exist.",
+      "Define a getter property to calculate the age of each exposure."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st and 2nd Options are correct: To calculate and expose derived or virtual values (such as an exposure's age based on elapsed time), developers should create a Gosu enhancement for the entity (e.g., ExposureEnhancement.gsx) and define a read-only getter property containing the calculation logic. Storing derived values as physical database columns (via an entity extension) is an anti-pattern because storing them would be redundant."
+  },
+  {
+    "id": "q116",
+    "question": "Given the method below: public function FriendlyGreeting (name: String) : String { if (name == null or name.length == 0) throw \"Requires a non-empty string!\" return \"Hello, \" + name + \"!\" } What best practice is violated in the code?",
+    "options": [
+      "'return' cannot return more than one object; the method should make and return a String",
+      "A method should not throw an exception",
+      "The 'throw' statement is used without a matching 'catch' statement",
+      "The name of the method should be \"friendlyGreeting\""
+    ],
+    "correct_answers": [
+      "The name of the method should be \"friendlyGreeting\""
+    ],
+    "choose_x_options": 1,
+    "explanation": "4th Option is correct: Guidewire coding best practices state that the recommended capitalization convention for methods is lower camel case, where the first letter of an identifier is lowercase and the first letter of each subsequent concatenated word is capitalized. Therefore, FriendlyGreeting violates this standard and should be named friendlyGreeting."
+  },
+  {
+    "id": "q117",
+    "question": "The Contact entity is associated with an array of bank accounts. Which approach follows best practices for determining how many of the bank accounts are checking accounts?",
+    "options": [
+      "var count = 0 \\n for (bankAccount in contact.BankAccounts) { \\n if (bankAccount.AccountType == BankAccountType.TC_CHECKING) { count += 1 } \\n } ...",
+      "var accountList = contact.BankAccounts.toList() \\n var count = accountList.countWhere(...) ...",
+      "var count = 0 \\n contact.BankAccounts.where(...) { count += 1 } ...",
+      "var count = 0 \\n contact.BankAccounts.each(...) ...",
+      "var count = contact.BankAccounts.countWhere(\\bankAccount -> bankAccount.AccountType == BankAccountType.TC_CHECKING) ..."
+    ],
+    "correct_answers": [
+      "var count = contact.BankAccounts.countWhere(\\bankAccount -> bankAccount.AccountType == BankAccountType.TC_CHECKING) ..."
+    ],
+    "choose_x_options": 1,
+    "explanation": "5th Option is correct: To determine the count of elements in an array that match a given condition, the built-in Gosu array method .countWhere(condition) should be used. Converting the array to a list or collection prior to checking (as in the 2nd option) creates unnecessary memory overhead, and manually iterating with loops or .each() adds redundant complexity."
+  },
+  {
+    "id": "q118",
+    "question": "An insurer wants to determine how many activities have been generated to review a denial decision with an Account Manager. A developer has written this query: Code snippet uses gw.api.database.Query var queryResults = Query.make(Activity).select().toCollection().where( \\ act -> act.ActivityPattern.Code == \"account_denial\" ) This query does not perform as well as it should. Where should the results be filtered to follow best practices?",
+    "options": [
+      "In the application cache",
+      "In a block statement",
+      "In the database",
+      "On the application server"
+    ],
+    "correct_answers": [
+      "In the database"
+    ],
+    "choose_x_options": 1,
+    "explanation": "3rd Option is correct: The provided query fetches all activities from the database, converts the full result set into an in-memory collection (.toCollection()), and then filters it on the application server using .where(), which causes severe memory bloat and processing lag. To optimize performance, the filtering must be executed at the database level by utilizing .compare() restrictions on the Query object prior to executing .select()."
+  },
+  {
+    "id": "q119",
+    "question": "On a policy summary page, there is a section displaying related claims. The business requires that clicking on a claim number navigates the user to that specific claim's summary page. Which property of a widget should be configured to implement this clickable navigation?",
+    "options": [
+      "forwardLocation",
+      "targetLocation",
+      "value",
+      "linkTarget",
+      "linkURL",
+      "action",
+      "editable"
+    ],
+    "correct_answers": [
+      "action"
+    ],
+    "choose_x_options": 1,
+    "explanation": "6th Option is correct: To make an atomic widget clickable and trigger navigation to a new location, developers must configure a go-to statement (such as .go() or .push()) inside the widget's action property."
+  },
+  {
+    "id": "q120",
+    "question": "Which logging statement follows best practice?",
+    "options": [
+      "if (_logger.InfoEnabled) { _logger.debug(\"Adding '${contact.PublicID}' to ContactManager\") }",
+      "_logger.error(DisplayKey.get(\"Web.ContactManager.Error.GeneralExcept\", e.Message))",
+      "if (_logger.DebugEnabled) { _logger.debug(logPrefix + someReallyExpensiveOperation()) }",
+      "_logger.info(logPrefix + \"[Address#AddressLine1=\" + address.AddressLine1 + \"][Address#City\" + address.City + \"][Address#State\" + address.State + \"]\")"
+    ],
+    "correct_answers": [
+      "if (_logger.DebugEnabled) { _logger.debug(logPrefix + someReallyExpensiveOperation()) }"
+    ],
+    "choose_x_options": 1,
+    "explanation": "3rd Option is correct: Guidewire best practices dictate that log statements involving expensive method computations or string concatenations must be protected by an if statement verifying that the specific logging level is enabled (e.g., if (_logger.DebugEnabled)) to prevent unnecessary performance overhead. The 4th Option performs heavy string concatenation without a guard; the 2nd Option incorrectly passes e.Message instead of the full exception object e to capture the stack trace; and the 1st Option evaluates InfoEnabled but attempts to log at the debug level."
+  },
+  {
+    "id": "q121",
+    "question": "The business has requested that a claim review Worksheet be made editable. Which action(s) are required and follow best practices to configure it correctly?",
+    "options": [
+      "Set the detail view mode property to editable.",
+      "Ensure the root object variable for the detail view is defined in the Required variables tab.",
+      "Set the canEdit property of the Location Group to a Gosu expression that evaluates to true.",
+      "Add a Toolbar with an Edit Buttons widget to the Location.",
+      "Set the canEdit property of the Worksheet to true.",
+      "Define an editable variable using the Variables tab and set it to true."
+    ],
+    "correct_answers": [
+      "Add a Toolbar with an Edit Buttons widget to the Location.",
+      "Set the canEdit property of the Worksheet to true."
+    ],
+    "choose_x_options": 2,
+    "explanation": "4th and 5th Options are correct: For a single-screen location like a Worksheet to support edit mode and render Edit/Update buttons, its canEdit property must be set to true. Additionally, an Edit Buttons widget must be added to a Toolbar on the top-level Screen/Location to control the transaction lifecycle and switch the inner input widgets from read-only to edit mode. Location Groups themselves do not have a canEdit property (editability is controlled at the Page/Screen level)."
+  },
+  {
+    "id": "q122",
+    "question": "According to best practices, which two requirements should be implemented using a Pre-Update Rule?",
+    "options": [
+      "Automatically determine the optimal specific adjuster to handle a newly reported loss based on the claim's coverage type and geographical location.",
+      "If the Loss Description field is empty upon clicking save, immediately reject the save operation and highlight the field with an error message informing the user it is required.",
+      "Calculate the derived totalAmountPaid property instantaneously in the user interface whenever a new payment is entered on the Check entry screen.",
+      "Initiate an asynchronous background workflow process to calculate complex risk assessment metrics after the Claim has been committed to the database.",
+      "When a policyholder's address is changed on a Contact record, immediately update the address details on all currently unissued checks associated with that Contact."
+    ],
+    "correct_answers": [
+      "Automatically determine the optimal specific adjuster to handle a newly reported loss based on the claim's coverage type and geographical location.",
+      "When a policyholder's address is changed on a Contact record, immediately update the address details on all currently unissued checks associated with that Contact."
+    ],
+    "choose_x_options": 2,
+    "explanation": "1st and 5th Options are correct: Preupdate rules are triggered when saving an object and are used to perform domain logic or processing that must be completed before the object is committed. Automatically assigning a user before the entity commit (like the contact assignment example in the training) and updating related entities like scheduled checks when an address changes are explicitly defined as pre-update business logic implementations. By contrast, field-rejection operations map to Validation rules, instantaneous UI calculations map to Post On Change dynamic behavior, and post-commit operations map to Event Message rules or Workflows."
+  }
+]
